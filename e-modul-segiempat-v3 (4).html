@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-Modul Matematika – Segiempat Kelas VII SMP</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Baloo+2:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root{
+  --primary:#1a56db;--primary-dark:#1043b8;--primary-light:#dbeafe;
+  --accent:#f97316;--accent-light:#fff7ed;
+  --green:#16a34a;--green-light:#dcfce7;
+  --purple:#7c3aed;--purple-light:#ede9fe;
+  --yellow:#ca8a04;--yellow-light:#fefce8;
+  --red:#dc2626;--red-light:#fee2e2;
+  --bg:#f0f6ff;--card:#fff;--text:#1e293b;--text-muted:#64748b;
+  --border:#e2e8f0;--shadow:0 4px 24px rgba(26,86,219,.10);--radius:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+/* ===== COVER ===== */
+#cover{
+  min-height:100vh;
+  background:linear-gradient(135deg,#0f2c8f 0%,#1a56db 40%,#06b6d4 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:40px 24px;position:relative;overflow:hidden;
+}
+.cover-particle{position:absolute;border-radius:50%;animation:floatUp linear infinite;opacity:.15;}
+@keyframes floatUp{0%{transform:translateY(100vh) scale(0);}100%{transform:translateY(-100px) scale(1);opacity:0;}}
+.cover-badge{background:rgba(255,255,255,.18);border:2px solid rgba(255,255,255,.35);color:#fff;padding:8px 24px;border-radius:100px;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;backdrop-filter:blur(8px);}
+.cover-title{font-family:'Baloo 2',cursive;font-size:clamp(54px,10vw,100px);font-weight:800;color:#fff;line-height:1;text-shadow:0 4px 32px rgba(0,0,0,.25);margin-bottom:6px;animation:slideDown .8s ease both;}
+.cover-subtitle{font-family:'Baloo 2',cursive;font-size:clamp(18px,3.5vw,28px);font-weight:700;color:rgba(255,255,255,.88);margin-bottom:20px;animation:slideDown .9s .1s ease both;}
+@keyframes slideDown{from{opacity:0;transform:translateY(-30px);}to{opacity:1;transform:translateY(0);}}
+.cover-chip{display:inline-block;background:#f97316;color:#fff;padding:10px 32px;border-radius:100px;font-size:17px;font-weight:800;margin-bottom:10px;box-shadow:0 4px 20px rgba(249,115,22,.45);}
+.cover-author{color:rgba(255,255,255,.82);font-size:15px;font-weight:600;margin-bottom:36px;line-height:1.7;}
+.cover-shapes-row{display:flex;gap:14px;justify-content:center;margin-bottom:36px;}
+.cover-shape-icon{width:58px;height:58px;background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.3);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:26px;backdrop-filter:blur(8px);animation:floatBob 3s ease-in-out infinite;}
+.cover-shape-icon:nth-child(2){animation-delay:.5s;}
+.cover-shape-icon:nth-child(3){animation-delay:1s;}
+.cover-shape-icon:nth-child(4){animation-delay:1.5s;}
+@keyframes floatBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.btn-start{background:#fff;color:var(--primary);border:none;cursor:pointer;padding:16px 50px;border-radius:100px;font-size:18px;font-weight:800;font-family:'Nunito',sans-serif;box-shadow:0 8px 32px rgba(0,0,0,.18);transition:all .3s;display:inline-flex;align-items:center;gap:10px;}
+.btn-start:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(0,0,0,.22);}
+
+/* ===== APP ===== */
+#app{display:none;}
+.header{background:linear-gradient(90deg,var(--primary),#3b82f6);color:#fff;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:200;box-shadow:0 2px 16px rgba(26,86,219,.2);}
+.header-logo{font-family:'Baloo 2',cursive;font-size:20px;font-weight:800;display:flex;align-items:center;gap:8px;}
+.header-right{display:flex;align-items:center;gap:16px;}
+.prog-wrap{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:700;}
+.prog-bar{width:110px;height:8px;background:rgba(255,255,255,.25);border-radius:100px;overflow:hidden;}
+.prog-fill{height:100%;background:#f97316;border-radius:100px;transition:width .5s;}
+
+/* audio bar */
+.audio-bar{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:100px;padding:6px 14px;display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;font-weight:700;transition:background .2s;}
+.audio-bar:hover{background:rgba(255,255,255,.25);}
+.audio-bar i{font-size:16px;}
+
+.layout{display:flex;min-height:calc(100vh - 64px);}
+.sidebar{width:255px;flex-shrink:0;background:var(--card);border-right:1px solid var(--border);padding:16px 0;position:sticky;top:64px;height:calc(100vh - 64px);overflow-y:auto;}
+.sidebar-title{padding:0 18px 10px;font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);}
+.nav-item{display:flex;align-items:center;gap:10px;padding:11px 18px;cursor:pointer;font-size:13px;font-weight:700;color:var(--text-muted);border-left:3px solid transparent;transition:all .2s;}
+.nav-item:hover{background:var(--primary-light);color:var(--primary);}
+.nav-item.active{background:var(--primary-light);color:var(--primary);border-left-color:var(--primary);}
+.nav-sep{height:1px;background:var(--border);margin:6px 0;}
+
+.content{flex:1;padding:28px 36px;max-width:900px;}
+.page{display:none;animation:fadeUp .4s ease both;}
+.page.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+
+/* ===== SECTION HEADER ===== */
+.sec-hd{display:flex;align-items:center;gap:14px;margin-bottom:24px;}
+.sec-ic{width:52px;height:52px;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;}
+.sec-ic.blue{background:var(--primary-light);}
+.sec-ic.orange{background:var(--accent-light);}
+.sec-ic.green{background:var(--green-light);}
+.sec-ic.purple{background:var(--purple-light);}
+.sec-ic.yellow{background:var(--yellow-light);}
+.sec-title{font-family:'Baloo 2',cursive;font-size:24px;font-weight:800;}
+.sec-sub{font-size:13px;color:var(--text-muted);font-weight:600;margin-top:2px;}
+
+/* ===== CARDS ===== */
+.card{background:var(--card);border-radius:var(--radius);padding:22px;margin-bottom:18px;box-shadow:var(--shadow);border:1px solid var(--border);transition:transform .2s;}
+.card:hover{transform:translateY(-2px);}
+.card-title{font-weight:800;font-size:15px;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+
+/* ===== BOXES ===== */
+.box{border-radius:14px;padding:16px 18px;margin-bottom:14px;font-size:14px;line-height:1.75;}
+.box-title{font-weight:800;font-size:14px;margin-bottom:6px;}
+.box.blue{background:var(--primary-light);border-left:4px solid var(--primary);}
+.box.orange{background:var(--accent-light);border-left:4px solid var(--accent);}
+.box.green{background:var(--green-light);border-left:4px solid var(--green);}
+.box.purple{background:var(--purple-light);border-left:4px solid var(--purple);}
+.box.yellow{background:var(--yellow-light);border-left:4px solid var(--yellow);}
+.box.red{background:var(--red-light);border-left:4px solid var(--red);}
+
+/* ===== DEFINITION ===== */
+.defbox{background:linear-gradient(135deg,#1a56db,#3b82f6);color:#fff;border-radius:16px;padding:22px;margin:16px 0;box-shadow:0 8px 24px rgba(26,86,219,.25);}
+.defbox-label{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;opacity:.75;margin-bottom:6px;}
+.defbox-text{font-size:14px;line-height:1.75;font-weight:600;}
+
+/* ===== PBL STEPS ===== */
+.pbl-steps{display:flex;margin:18px 0;}
+.pbl-step{flex:1;text-align:center;position:relative;}
+.pbl-step::after{content:'';position:absolute;top:23px;left:50%;width:100%;height:3px;background:var(--border);z-index:0;}
+.pbl-step:last-child::after{display:none;}
+.pbl-dot{width:46px;height:46px;border-radius:50%;background:var(--border);color:var(--text-muted);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;margin:0 auto 6px;position:relative;z-index:1;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.1);transition:all .3s;}
+.pbl-step.done .pbl-dot{background:var(--green);color:#fff;}
+.pbl-step.active .pbl-dot{background:var(--primary);color:#fff;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(26,86,219,.4);}50%{box-shadow:0 0 0 8px rgba(26,86,219,0);}}
+.pbl-label{font-size:10px;font-weight:800;color:var(--text-muted);}
+.pbl-step.active .pbl-label{color:var(--primary);}
+
+/* ===== SHAPE CARDS ===== */
+.shape-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin:16px 0;}
+.shape-card{background:var(--card);border:2px solid var(--border);border-radius:16px;padding:18px;cursor:pointer;transition:all .3s;position:relative;overflow:hidden;}
+.shape-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent,rgba(26,86,219,.04));opacity:0;transition:opacity .3s;}
+.shape-card:hover::before{opacity:1;}
+.shape-card:hover{border-color:var(--primary);transform:translateY(-5px);box-shadow:0 12px 32px rgba(26,86,219,.15);}
+.shape-card.open{border-color:var(--primary);background:var(--primary-light);}
+.shape-card-hd{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.shape-name{font-weight:800;font-size:15px;}
+.shape-hint{font-size:11px;color:var(--text-muted);margin-bottom:6px;}
+.shape-props{font-size:12px;color:var(--text-muted);line-height:1.75;display:none;}
+.shape-card.open .shape-props{display:block;animation:fadeUp .3s ease;}
+.shape-props li{list-style:none;padding-left:18px;position:relative;}
+.shape-props li::before{content:'✓';position:absolute;left:0;color:var(--green);font-weight:800;}
+
+/* ===== BANGUN DATAR SVG IMAGES ===== */
+.bangun-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;margin:16px 0;}
+.bangun-item{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;text-align:center;cursor:pointer;transition:all .3s;position:relative;overflow:hidden;}
+.bangun-item:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(26,86,219,.18);border-color:var(--primary);}
+.bangun-item svg{width:90px;height:80px;display:block;margin:0 auto 10px;transition:transform .3s;}
+.bangun-item:hover svg{transform:scale(1.1) rotate(-3deg);}
+.bangun-item .b-name{font-weight:800;font-size:13px;color:var(--primary);}
+.bangun-item .b-sub{font-size:11px;color:var(--text-muted);margin-top:3px;}
+.popup-hint{position:absolute;top:8px;right:8px;background:var(--accent);color:#fff;font-size:9px;font-weight:800;padding:2px 7px;border-radius:100px;letter-spacing:.5px;}
+
+/* ===== POPUP / LIGHTBOX ===== */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(15,28,80,.85);z-index:1000;align-items:center;justify-content:center;backdrop-filter:blur(6px);}
+.lightbox.show{display:flex;animation:fadeIn .25s ease;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.lb-content{background:var(--card);border-radius:24px;padding:32px;max-width:520px;width:90%;text-align:center;position:relative;animation:popIn .3s cubic-bezier(.34,1.56,.64,1);}
+@keyframes popIn{from{transform:scale(.7);opacity:0;}to{transform:scale(1);opacity:1;}}
+.lb-close{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;border:none;background:var(--bg);cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:background .2s;}
+.lb-close:hover{background:var(--red-light);}
+.lb-shape-name{font-family:'Baloo 2',cursive;font-size:22px;font-weight:800;color:var(--primary);margin-bottom:12px;}
+.lb-svg{margin:16px auto;}
+.lb-props{text-align:left;font-size:13px;line-height:1.85;background:var(--primary-light);border-radius:12px;padding:14px 16px;}
+.lb-props li{list-style:none;padding-left:20px;position:relative;}
+.lb-props li::before{content:'✓';position:absolute;left:0;color:var(--green);font-weight:800;}
+.lb-formula{background:var(--primary);color:#fff;border-radius:12px;padding:12px 16px;margin-top:12px;font-size:13px;font-weight:700;}
+
+/* ===== TABLE ===== */
+.table-wrap{overflow-x:auto;margin:14px 0;}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th{background:var(--primary);color:#fff;font-weight:800;padding:11px 14px;text-align:center;}
+td{padding:9px 14px;text-align:center;border-bottom:1px solid var(--border);}
+tr:nth-child(even) td{background:var(--bg);}
+tr:hover td{background:var(--primary-light);}
+.ck{color:var(--green);font-weight:800;font-size:15px;}
+.cx{color:var(--red);font-weight:800;}
+
+/* ===== FORMULA GRID ===== */
+.formula-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin:14px 0;}
+.formula-card{background:var(--card);border:1px solid var(--border);border-radius:15px;padding:16px;text-align:center;box-shadow:var(--shadow);transition:all .3s;}
+.formula-card:hover{transform:translateY(-4px);border-color:var(--primary);}
+.f-shape{margin-bottom:6px;}
+.f-name{font-size:12px;font-weight:800;color:var(--primary);margin-bottom:8px;}
+.f-eq{background:var(--bg);border-radius:8px;padding:6px 10px;font-size:12px;font-weight:700;font-family:monospace;}
+.f-eq2{background:var(--bg);border-radius:8px;padding:4px 10px;font-size:11px;font-weight:600;font-family:monospace;color:var(--text-muted);margin-top:4px;}
+
+/* ===== QUIZ ===== */
+.quiz-question{background:var(--card);border-radius:16px;padding:22px;margin-bottom:18px;box-shadow:var(--shadow);border:1px solid var(--border);}
+.quiz-q{font-weight:700;font-size:15px;margin-bottom:14px;line-height:1.65;}
+.quiz-options{display:flex;flex-direction:column;gap:9px;}
+.quiz-opt{background:var(--bg);border:2px solid var(--border);border-radius:12px;padding:11px 15px;cursor:pointer;font-size:14px;font-weight:600;transition:all .2s;display:flex;align-items:center;gap:11px;}
+.quiz-opt:hover{border-color:var(--primary);background:var(--primary-light);}
+.quiz-opt.selected{border-color:var(--primary);background:var(--primary-light);}
+.quiz-opt.correct{border-color:var(--green);background:var(--green-light);}
+.quiz-opt.wrong{border-color:var(--red);background:var(--red-light);}
+.opt-letter{width:30px;height:30px;border-radius:50%;background:var(--border);color:var(--text-muted);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;flex-shrink:0;transition:all .2s;}
+.quiz-opt.selected .opt-letter{background:var(--primary);color:#fff;}
+.quiz-opt.correct .opt-letter{background:var(--green);color:#fff;}
+.quiz-opt.wrong .opt-letter{background:var(--red);color:#fff;}
+
+/* ===== BUTTONS ===== */
+.btn{padding:11px 26px;border-radius:100px;font-size:14px;font-weight:800;font-family:'Nunito',sans-serif;cursor:pointer;border:none;transition:all .2s;display:inline-flex;align-items:center;gap:8px;}
+.btn-primary{background:var(--primary);color:#fff;box-shadow:0 4px 16px rgba(26,86,219,.3);}
+.btn-primary:hover{background:var(--primary-dark);transform:translateY(-2px);}
+.btn-secondary{background:var(--bg);color:var(--primary);border:2px solid var(--primary);}
+.btn-secondary:hover{background:var(--primary-light);}
+.btn-orange{background:var(--accent);color:#fff;box-shadow:0 4px 16px rgba(249,115,22,.3);}
+.btn-orange:hover{background:#ea6c00;transform:translateY(-2px);}
+.btn-green{background:var(--green);color:#fff;box-shadow:0 4px 16px rgba(22,163,74,.3);}
+.btn-green:hover{transform:translateY(-2px);}
+.btn-row{display:flex;gap:11px;flex-wrap:wrap;margin-top:18px;}
+
+/* ===== SCORE ===== */
+.score-area{text-align:center;padding:36px 20px;}
+.score-circle{width:130px;height:130px;border-radius:50%;background:linear-gradient(135deg,var(--primary),#06b6d4);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;box-shadow:0 8px 32px rgba(26,86,219,.3);}
+.score-num{font-family:'Baloo 2',cursive;font-size:44px;font-weight:800;color:#fff;}
+.score-sub{font-size:13px;color:rgba(255,255,255,.8);font-weight:700;}
+
+/* ===== TABS ===== */
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:16px;}
+.tab{padding:9px 18px;cursor:pointer;font-size:13px;color:var(--text-muted);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .2s;font-weight:700;}
+.tab:hover{color:var(--primary);}
+.tab.active{color:var(--primary);border-bottom-color:var(--primary);}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;animation:fadeUp .3s ease;}
+
+/* ===== PROBLEM BOX ===== */
+.problem{background:#fefce8;border:1.5px solid #ca8a04;border-radius:14px;padding:16px;margin:12px 0;font-size:13px;line-height:1.8;color:#713f12;position:relative;}
+.problem-badge{position:absolute;top:-11px;left:16px;background:var(--yellow);color:#fff;font-size:10px;font-weight:800;padding:3px 12px;border-radius:100px;letter-spacing:.5px;}
+
+/* ===== REVEAL ===== */
+.reveal-btn{background:none;border:1.5px solid var(--border);border-radius:var(--radius);padding:8px 16px;font-size:13px;cursor:pointer;color:var(--text-muted);font-family:'Nunito',sans-serif;font-weight:700;transition:all .2s;display:inline-flex;align-items:center;gap:6px;}
+.reveal-btn:hover{border-color:var(--primary);color:var(--primary);background:var(--primary-light);}
+.reveal{display:none;margin-top:12px;}
+.reveal.show{display:block;animation:fadeUp .3s ease;}
+.math-box{background:var(--primary-light);border-radius:10px;padding:10px 14px;text-align:center;font-size:14px;font-weight:800;color:var(--primary-dark);margin:8px 0;font-family:monospace;}
+
+/* ===== VIDEO SECTION ===== */
+.video-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:16px;box-shadow:var(--shadow);background:#000;margin:16px 0;}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:16px;}
+.video-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,86,219,.85),rgba(6,182,212,.7));display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;border-radius:16px;transition:opacity .3s;}
+.video-overlay:hover{opacity:.9;}
+.play-btn{width:72px;height:72px;border-radius:50%;background:rgba(255,255,255,.95);display:flex;align-items:center;justify-content:center;margin-bottom:14px;box-shadow:0 8px 32px rgba(0,0,0,.2);animation:floatBob 2s ease-in-out infinite;}
+.play-btn i{font-size:28px;color:var(--primary);margin-left:5px;}
+.video-overlay h3{color:#fff;font-size:16px;font-weight:800;margin-bottom:4px;}
+.video-overlay p{color:rgba(255,255,255,.8);font-size:12px;}
+
+/* ===== GIF SECTION ===== */
+.gif-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin:14px 0;}
+.gif-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);cursor:pointer;transition:all .3s;}
+.gif-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(26,86,219,.15);border-color:var(--primary);}
+.gif-card img{width:100%;height:160px;object-fit:cover;display:block;}
+.gif-caption{padding:10px 14px;font-size:12px;font-weight:700;color:var(--text-muted);}
+
+/* ===== AUDIO PLAYER ===== */
+.audio-player{background:linear-gradient(135deg,#1a56db,#3b82f6);border-radius:16px;padding:20px;margin:14px 0;color:#fff;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.audio-thumb{width:56px;height:56px;background:rgba(255,255,255,.2);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;}
+.audio-info{flex:1;}
+.audio-info h4{font-size:15px;font-weight:800;margin-bottom:3px;}
+.audio-info p{font-size:12px;opacity:.8;}
+.audio-controls{display:flex;align-items:center;gap:10px;margin-top:8px;}
+.audio-btn{width:38px;height:38px;border-radius:50%;border:none;background:rgba(255,255,255,.2);color:#fff;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:background .2s;}
+.audio-btn:hover{background:rgba(255,255,255,.35);}
+.audio-btn.play-pause{width:46px;height:46px;background:#fff;color:var(--primary);font-size:18px;}
+.audio-btn.play-pause:hover{background:rgba(255,255,255,.9);}
+.audio-progress{flex:1;height:5px;background:rgba(255,255,255,.25);border-radius:100px;cursor:pointer;position:relative;min-width:80px;}
+.audio-progress-fill{height:100%;background:#fff;border-radius:100px;transition:width .1s;pointer-events:none;}
+.audio-time{font-size:11px;opacity:.8;white-space:nowrap;}
+
+/* ===== VIDEO THUMBNAIL & MODAL ===== */
+.video-thumb-wrap{border-radius:16px;overflow:hidden;margin:10px 0;}
+.video-thumb{position:relative;cursor:pointer;border-radius:16px;overflow:hidden;display:block;line-height:0;}
+.video-thumb img{width:100%;height:220px;object-fit:cover;display:block;transition:transform .4s;}
+.video-thumb:hover img{transform:scale(1.04);}
+.video-thumb-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,28,100,.65),rgba(6,100,160,.5));display:flex;flex-direction:column;align-items:center;justify-content:center;transition:background .3s;}
+.video-thumb:hover .video-thumb-overlay{background:linear-gradient(135deg,rgba(15,28,100,.8),rgba(6,100,160,.7));}
+.play-btn-big{width:72px;height:72px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;margin-bottom:14px;box-shadow:0 6px 24px rgba(0,0,0,.25);transition:transform .25s;}
+.play-btn-big i{font-size:28px;color:#dc2626;margin-left:6px;}
+.video-thumb:hover .play-btn-big{transform:scale(1.15);}
+.video-thumb-info{text-align:center;color:#fff;}
+.video-thumb-title{font-size:15px;font-weight:800;margin-bottom:5px;text-shadow:0 2px 6px rgba(0,0,0,.4);}
+.video-thumb-sub{font-size:12px;opacity:.85;}
+.video-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:2000;align-items:center;justify-content:center;padding:20px;}
+.video-modal.show{display:flex;animation:fadeIn .25s ease;}
+.video-modal-inner{width:100%;max-width:760px;position:relative;}
+.video-modal-close{position:absolute;top:-48px;right:0;background:rgba(255,255,255,.15);border:none;color:#fff;width:40px;height:40px;border-radius:50%;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;}
+.video-modal-close:hover{background:rgba(255,255,255,.3);}
+.video-modal-title{color:#fff;font-size:15px;font-weight:700;margin-bottom:12px;text-align:center;opacity:.9;}
+.video-modal-frame{position:relative;padding-bottom:56.25%;height:0;border-radius:14px;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,.5);}
+.video-modal-frame iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
+
+/* ===== OBJECTS ROW ===== */
+.obj-row{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;}
+.obj-item{background:var(--primary-light);border-radius:12px;padding:10px 14px;text-align:center;min-width:80px;cursor:pointer;transition:all .2s;}
+.obj-item:hover{background:var(--primary);color:#fff;}
+.obj-item:hover .obj-lbl{color:#fff;}
+.obj-ic{font-size:24px;}
+.obj-lbl{font-size:11px;margin-top:4px;color:var(--primary);font-weight:700;}
+
+/* ===== PROFILE ===== */
+.profile{background:linear-gradient(135deg,#1a56db,#3b82f6);border-radius:20px;padding:28px;color:#fff;text-align:center;margin-bottom:18px;}
+.profile .av{width:64px;height:64px;background:rgba(255,255,255,.2);border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:32px;border:3px solid rgba(255,255,255,.4);}
+.profile h3{font-size:20px;font-weight:800;margin-bottom:6px;}
+.profile p{font-size:13px;opacity:.85;line-height:1.7;}
+
+/* ===== HOME GRID ===== */
+.home-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:12px;margin-bottom:18px;}
+.home-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;text-align:center;cursor:pointer;transition:all .25s;}
+.home-card:hover{border-color:var(--primary);background:var(--primary-light);transform:translateY(-4px);box-shadow:0 12px 28px rgba(26,86,219,.12);}
+.home-card .ic{font-size:30px;margin-bottom:8px;}
+.home-card .hn{font-size:13px;font-weight:800;color:var(--primary);}
+.home-card .hs{font-size:11px;color:var(--text-muted);margin-top:3px;}
+
+/* ===== PETA KONSEP ===== */
+.cm-root{text-align:center;padding:14px;}
+.cm-main{display:inline-block;background:var(--primary);color:#fff;padding:10px 28px;border-radius:var(--radius);font-size:18px;font-weight:800;margin-bottom:14px;}
+.cm-branches{display:flex;justify-content:center;gap:12px;margin-bottom:12px;flex-wrap:wrap;}
+.cm-branch{padding:8px 18px;border-radius:12px;font-size:13px;font-weight:800;color:#fff;}
+.cm-leaves{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;}
+.cm-leaf{background:var(--primary-light);color:var(--primary);padding:6px 14px;border-radius:10px;font-size:12px;font-weight:700;border:1px solid rgba(26,86,219,.2);}
+
+/* ===== STEP ROW ===== */
+.step-row{display:flex;gap:12px;margin-bottom:14px;}
+.step-num{width:36px;height:36px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;flex-shrink:0;}
+.step-body .st{font-size:14px;font-weight:800;margin-bottom:3px;}
+.step-body .sd{font-size:13px;color:var(--text-muted);line-height:1.65;}
+
+/* ===== KALKULATOR ===== */
+select,input[type=number]{border-radius:12px;border:1.5px solid var(--border);padding:9px 13px;font-family:'Nunito',sans-serif;font-size:13px;background:var(--bg);color:var(--text);font-weight:700;transition:border .2s;}
+select:focus,input[type=number]:focus{outline:none;border-color:var(--primary);}
+.calc-inputs{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0;}
+.calc-field{display:flex;flex-direction:column;gap:4px;}
+.calc-label{font-size:11px;font-weight:700;color:var(--text-muted);}
+
+/* ===== LKPD ===== */
+textarea{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:12px;padding:10px 13px;font-size:13px;font-family:'Nunito',sans-serif;color:var(--text);resize:vertical;min-height:76px;transition:border .2s;}
+textarea:focus{outline:none;border-color:var(--primary);}
+
+/* ===== STAR RATING ===== */
+.star-row{display:flex;gap:8px;margin:10px 0;}
+.star{font-size:30px;cursor:pointer;filter:grayscale(1) opacity(.5);transition:all .2s;}
+.star.on{filter:none;}
+.star:hover{transform:scale(1.2);}
+
+/* ===== SCROLL TOP ===== */
+.scroll-top{position:fixed;bottom:22px;right:22px;width:46px;height:46px;border-radius:50%;background:var(--primary);color:#fff;border:none;font-size:18px;cursor:pointer;box-shadow:0 4px 16px rgba(26,86,219,.3);display:flex;align-items:center;justify-content:center;z-index:99;transition:all .2s;opacity:0;pointer-events:none;}
+.scroll-top.show{opacity:1;pointer-events:all;}
+.scroll-top:hover{transform:translateY(-3px);}
+
+/* ===== BADGE / TAG ===== */
+.pbl-tag{display:inline-flex;align-items:center;gap:6px;background:var(--accent-light);color:var(--accent);border:1.5px solid var(--accent);border-radius:100px;padding:4px 14px;font-size:12px;font-weight:800;margin-bottom:12px;}
+
+/* ===== LOADING / ANIMATION ===== */
+.bounce-in{animation:bounceIn .6s cubic-bezier(.34,1.56,.64,1);}
+@keyframes bounceIn{0%{transform:scale(0);opacity:0;}100%{transform:scale(1);opacity:1;}}
+.shimmer{background:linear-gradient(90deg,var(--bg) 25%,var(--border) 50%,var(--bg) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;}
+@keyframes shimmer{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  .sidebar{display:none;}
+  .content{padding:16px;}
+  .shape-grid{grid-template-columns:1fr 1fr;}
+  .bangun-grid{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== LIGHTBOX / POPUP ===== -->
+<div class="lightbox" id="lightbox" onclick="closeLB(event)">
+  <div class="lb-content" id="lb-content">
+    <button class="lb-close" onclick="closeLightbox()"><i class="fa fa-times"></i></button>
+    <div class="lb-shape-name" id="lb-name"></div>
+    <div class="lb-svg" id="lb-svg"></div>
+    <ul class="lb-props" id="lb-props"></ul>
+    <div class="lb-formula" id="lb-formula"></div>
+  </div>
+</div>
+
+<!-- ===== VIDEO MODAL ===== -->
+<div class="video-modal" id="videoModal" onclick="closeVideoModalBg(event)">
+  <div class="video-modal-inner">
+    <button class="video-modal-close" onclick="closeVideoModal()"><i class="fa fa-times"></i></button>
+    <div class="video-modal-title" id="videoModalTitle"></div>
+    <div class="video-modal-frame">
+      <iframe id="videoModalFrame" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+
+<!-- Web Speech API digunakan untuk narasi — tidak memerlukan file audio eksternal -->
+<audio id="bgAudio" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<!-- ===== COVER ===== -->
+<div id="cover">
+  <div id="particles"></div>
+  <div class="cover-badge"><i class="fa fa-book-open"></i> &nbsp;E-Modul Matematika Interaktif</div>
+  <div class="cover-title">SEGIEMPAT</div>
+  <div class="cover-subtitle">Konsep • Sifat • Keliling & Luas</div>
+  <div class="cover-chip"><i class="fa fa-school"></i> &nbsp;Kelas VII / SMP</div>
+  <div class="cover-author">
+    <i class="fa fa-graduation-cap"></i> &nbsp;Berbasis Problem Based Learning (PBL) — Kurikulum Merdeka<br>
+    <i class="fa fa-pen"></i> &nbsp;Disusun oleh: <strong>Indriya Anggraeni</strong> | NIM. 23510043
+  </div>
+  <div class="cover-shapes-row">
+    <div class="cover-shape-icon">⬜</div>
+    <div class="cover-shape-icon">▬</div>
+    <div class="cover-shape-icon">◇</div>
+    <div class="cover-shape-icon">🪁</div>
+  </div>
+  <button class="btn-start" id="btn-mulai">
+    <i class="fa fa-play-circle"></i> Mulai Belajar
+  </button>
+</div>
+
+<!-- ===== MAIN APP ===== -->
+<div id="app">
+  <div class="header">
+    <div class="header-logo"><i class="fa fa-drafting-compass"></i> E-Modul Segiempat</div>
+    <div class="header-right">
+      <div class="audio-bar" id="bgToggle" onclick="toggleBg()">
+        <i class="fa fa-music" id="bgIcon"></i> <span id="bgLabel">Musik</span>
+      </div>
+      <div class="prog-wrap">
+        <span id="prog-text">0/4 selesai</span>
+        <div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="layout">
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="sidebar-title">📂 Umum</div>
+      <div class="nav-item active" data-page="home"><i class="fa fa-home"></i> Beranda</div>
+      <div class="nav-item" data-page="pengantar"><i class="fa fa-scroll"></i> Kata Pengantar</div>
+      <div class="nav-item" data-page="petakonsep"><i class="fa fa-sitemap"></i> Peta Konsep</div>
+      <div class="nav-item" data-page="petunjuk"><i class="fa fa-list-check"></i> Petunjuk Belajar</div>
+      <div class="nav-sep"></div>
+      <div class="sidebar-title">📖 Kegiatan Belajar</div>
+      <div class="nav-item" data-page="kb1"><i class="fa fa-lightbulb"></i> KB 1: Konsep</div>
+      <div class="nav-item" data-page="kb2"><i class="fa fa-shapes"></i> KB 2: Jenis Segiempat</div>
+      <div class="nav-item" data-page="kb3"><i class="fa fa-magnifying-glass"></i> KB 3: Sifat-Sifat</div>
+      <div class="nav-item" data-page="kb4"><i class="fa fa-ruler-combined"></i> KB 4: Keliling & Luas</div>
+      <div class="nav-sep"></div>
+      <div class="sidebar-title">📊 Evaluasi</div>
+      <div class="nav-item" data-page="video"><i class="fa fa-video"></i> Video Pembelajaran</div>
+      <div class="nav-item" data-page="lkpd"><i class="fa fa-file-pen"></i> LKPD Digital</div>
+      <div class="nav-item" data-page="evaluasi"><i class="fa fa-chart-bar"></i> Kuis Evaluasi</div>
+      <div class="nav-item" data-page="refleksi"><i class="fa fa-mirror"></i> Refleksi</div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+      <!-- ===== HOME ===== -->
+      <div id="page-home" class="page active">
+        <div class="profile">
+          <div class="av">📐</div>
+          <h3>Selamat Datang di E-Modul Segiempat!</h3>
+          <p>Matematika Kelas VII SMP — Berbasis Problem Based Learning<br>
+          <strong>Indriya Anggraeni</strong> | NIM. 23510043 | Cimahi, 2026</p>
+        </div>
+        <div class="home-grid">
+          <div class="home-card" data-goto="kb1"><div class="ic">💡</div><div class="hn">Konsep</div><div class="hs">Definisi segiempat</div></div>
+          <div class="home-card" data-goto="kb2"><div class="ic">🔷</div><div class="hn">Jenis</div><div class="hs">6 jenis segiempat</div></div>
+          <div class="home-card" data-goto="kb3"><div class="ic">🔍</div><div class="hn">Sifat-Sifat</div><div class="hs">Ciri tiap bangun</div></div>
+          <div class="home-card" data-goto="kb4"><div class="ic">📐</div><div class="hn">Keliling & Luas</div><div class="hs">Rumus & latihan</div></div>
+          <div class="home-card" data-goto="video"><div class="ic">🎬</div><div class="hn">Video</div><div class="hs">YouTube penjelasan</div></div>
+          <div class="home-card" data-goto="evaluasi"><div class="ic">📊</div><div class="hn">Kuis</div><div class="hs">Uji pemahaman</div></div>
+        </div>
+        <div class="box blue"><div class="box-title"><i class="fa fa-info-circle"></i> Tentang E-Modul</div>E-Modul ini menggunakan <strong>Problem Based Learning (PBL)</strong> — setiap topik dimulai dari permasalahan nyata kehidupan sehari-hari. Klik gambar bangun untuk melihat popup detail!</div>
+        <div class="box green"><div class="box-title"><i class="fa fa-bullseye"></i> Tujuan Pembelajaran</div>1. Memahami konsep dan definisi segiempat<br>2. Mengidentifikasi 6 jenis segiempat beserta sifat-sifatnya<br>3. Menghitung keliling dan luas berbagai segiempat<br>4. Menerapkan konsep dalam pemecahan masalah nyata</div>
+
+        <!-- BANGUN DATAR GALLERY -->
+        <div class="card">
+          <div class="card-title"><i class="fa fa-images"></i> Galeri Bangun Datar — Klik untuk Detail</div>
+          <div class="bangun-grid" id="home-bangun-grid"></div>
+        </div>
+      </div>
+
+      <!-- ===== KATA PENGANTAR ===== -->
+      <div id="page-pengantar" class="page">
+        <div class="sec-hd"><div class="sec-ic purple"><i class="fa fa-scroll"></i></div><div><div class="sec-title">Kata Pengantar</div><div class="sec-sub">Dari penyusun e-modul</div></div></div>
+        <div class="card" style="font-size:14px;line-height:1.9;">
+          <p style="text-indent:2em;margin-bottom:12px;">Puji syukur kehadirat Tuhan yang Maha Esa atas segala rahmat dan karunia-Nya sehingga E-Modul Matematika Materi Segiempat untuk kelas VII SMP berbasis Problem Based Learning (PBL) ini dapat disusun dan diselesaikan dengan baik.</p>
+          <p style="text-indent:2em;margin-bottom:12px;">E-modul ini dikembangkan sebagai salah satu inovasi pembelajaran yang mendukung implementasi kurikulum merdeka, yang menekankan pembelajaran bermakna, kontekstual, serta berpusat pada peserta didik. Materi segiempat dipilih karena merupakan konsep dasar dalam matematika yang banyak diterapkan dalam kehidupan sehari-hari.</p>
+          <p style="text-indent:2em;margin-bottom:12px;">Model Problem Based Learning (PBL) digunakan dalam e-modul ini untuk memberikan pengalaman belajar yang menantang melalui penyajian permasalahan nyata. Dengan pendekatan ini, peserta didik diharapkan mampu mengaitkannya dengan situasi kontekstual, bekerja sama dalam kelompok, serta mengkomunikasikan hasil pemecahan masalah secara sistematis.</p>
+          <p style="text-indent:2em;margin-bottom:20px;">Penulis menyadari bahwa e-modul ini masih memiliki keterbatasan. Kritik dan saran yang membangun sangat diharapkan demi perbaikan di masa mendatang. Semoga e-modul ini memberi manfaat bagi peserta didik, guru, dan dunia pendidikan.</p>
+          <div style="text-align:right;">
+            <div style="font-size:13px;color:var(--text-muted);">Cimahi, 30 Januari 2026</div>
+            <div style="font-weight:800;font-size:16px;margin-top:8px;">Indriya Anggraeni</div>
+            <div style="font-size:12px;color:var(--text-muted);">NIM. 23510043</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== PETA KONSEP ===== -->
+      <div id="page-petakonsep" class="page">
+        <div class="sec-hd"><div class="sec-ic orange"><i class="fa fa-sitemap"></i></div><div><div class="sec-title">Peta Konsep</div><div class="sec-sub">Gambaran umum materi segiempat</div></div></div>
+        <div class="card">
+          <div class="cm-root">
+            <div class="cm-main">⬜ SEGIEMPAT</div>
+            <div style="height:20px;width:2px;background:var(--border);margin:0 auto;"></div>
+            <div class="cm-branches">
+              <div class="cm-branch" style="background:#1a56db;">Sifat-Sifat</div>
+              <div class="cm-branch" style="background:#f97316;">Macam-Macam</div>
+              <div class="cm-branch" style="background:#16a34a;">Keliling & Luas</div>
+            </div>
+            <div class="cm-leaves">
+              <div class="cm-leaf">Titik Sudut</div><div class="cm-leaf">Sisi</div><div class="cm-leaf">Diagonal</div>
+              <div class="cm-leaf" style="background:#fff7ed;color:#ea580c;border-color:#f97316;">Persegi</div>
+              <div class="cm-leaf" style="background:#fff7ed;color:#ea580c;border-color:#f97316;">Persegi Panjang</div>
+              <div class="cm-leaf" style="background:#fff7ed;color:#ea580c;border-color:#f97316;">Jajargenjang</div>
+              <div class="cm-leaf" style="background:#fff7ed;color:#ea580c;border-color:#f97316;">Trapesium</div>
+              <div class="cm-leaf" style="background:#fff7ed;color:#ea580c;border-color:#f97316;">Belah Ketupat</div>
+              <div class="cm-leaf" style="background:#fff7ed;color:#ea580c;border-color:#f97316;">Layang-layang</div>
+            </div>
+          </div>
+        </div>
+        <div class="box blue"><div class="box-title"><i class="fa fa-info-circle"></i> Keterangan</div>Materi segiempat mencakup tiga aspek utama: <strong>sifat-sifat</strong> (titik sudut, sisi, diagonal), <strong>macam-macam</strong> (6 jenis segiempat), dan <strong>keliling & luas</strong> dari setiap jenis.</div>
+      </div>
+
+      <!-- ===== PETUNJUK ===== -->
+      <div id="page-petunjuk" class="page">
+        <div class="sec-hd"><div class="sec-ic yellow"><i class="fa fa-list-check"></i></div><div><div class="sec-title">Petunjuk Belajar</div><div class="sec-sub">Cara menggunakan e-modul ini</div></div></div>
+        <div class="card">
+          <div class="card-title"><i class="fa fa-gear"></i> Petunjuk Umum</div>
+          <div class="step-row"><div class="step-num">1</div><div class="step-body"><div class="st">Baca Tujuan Pembelajaran</div><div class="sd">Baca tujuan di setiap kegiatan belajar sebelum memulai materi.</div></div></div>
+          <div class="step-row"><div class="step-num">2</div><div class="step-body"><div class="st">Pelajari Secara Berurutan</div><div class="sd">Setiap bagian saling berkaitan. Mulai dari KB 1 hingga KB 4.</div></div></div>
+          <div class="step-row"><div class="step-num">3</div><div class="step-body"><div class="st">Klik Gambar Bangun Datar</div><div class="sd">Klik gambar untuk membuka popup detail sifat dan rumus.</div></div></div>
+          <div class="step-row"><div class="step-num">4</div><div class="step-body"><div class="st">Tonton Video YouTube</div><div class="sd">Klik tombol play di halaman Video untuk menonton penjelasan.</div></div></div>
+          <div class="step-row"><div class="step-num">5</div><div class="step-body"><div class="st">Dengarkan Audio</div><div class="sd">Aktifkan musik latar dari header, atau audio narasi di setiap KB.</div></div></div>
+          <div class="step-row"><div class="step-num">6</div><div class="step-body"><div class="st">Kerjakan Kuis Evaluasi</div><div class="sd">Setelah semua KB selesai, uji pemahaman dengan kuis evaluasi.</div></div></div>
+        </div>
+        <div class="card">
+          <div class="card-title"><i class="fa fa-diagram-next"></i> Alur Pembelajaran PBL</div>
+          <div class="pbl-steps">
+            <div class="pbl-step active"><div class="pbl-dot"><i class="fa fa-eye"></i></div><div class="pbl-label">Mengamati</div></div>
+            <div class="pbl-step"><div class="pbl-dot"><i class="fa fa-question"></i></div><div class="pbl-label">Menanyakan</div></div>
+            <div class="pbl-step"><div class="pbl-dot"><i class="fa fa-book"></i></div><div class="pbl-label">Mengumpulkan</div></div>
+            <div class="pbl-step"><div class="pbl-dot"><i class="fa fa-brain"></i></div><div class="pbl-label">Menalar</div></div>
+            <div class="pbl-step"><div class="pbl-dot"><i class="fa fa-check"></i></div><div class="pbl-label">Menyimpulkan</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== KB 1 ===== -->
+      <div id="page-kb1" class="page">
+        <div class="sec-hd"><div class="sec-ic blue"><i class="fa fa-lightbulb"></i></div><div><div class="sec-title">KB 1: Konsep Segiempat</div><div class="sec-sub">Kegiatan Belajar 1 — Definisi & Pengamatan</div></div></div>
+
+        <div class="pbl-steps">
+          <div class="pbl-step done"><div class="pbl-dot">✓</div><div class="pbl-label">Mengamati</div></div>
+          <div class="pbl-step done"><div class="pbl-dot">✓</div><div class="pbl-label">Menanyakan</div></div>
+          <div class="pbl-step active"><div class="pbl-dot">3</div><div class="pbl-label">Mengumpulkan</div></div>
+          <div class="pbl-step"><div class="pbl-dot">4</div><div class="pbl-label">Menalar</div></div>
+          <div class="pbl-step"><div class="pbl-dot">5</div><div class="pbl-label">Menyimpulkan</div></div>
+        </div>
+
+        <!-- Audio narasi KB1 -->
+        <div class="audio-player" id="ap1">
+          <div class="audio-thumb"><i class="fa fa-headphones"></i></div>
+          <div class="audio-info" style="width:100%;">
+            <h4><i class="fa fa-volume-high"></i> Audio Penjelasan KB 1 — Konsep Segiempat</h4>
+            <p style="font-size:12px;opacity:.8;margin-bottom:6px;">🔊 Narasi akan membacakan penjelasan materi KB 1 secara otomatis</p>
+            <div class="audio-controls">
+              <button class="audio-btn play-pause" onclick="toggleNarration(this)" title="Play / Pause Narasi"><i class="fa fa-play"></i></button>
+              <div class="audio-progress" style="flex:1;">
+                <div class="audio-progress-fill" style="width:0%"></div>
+              </div>
+              <span class="audio-time">0:00 / 0:00</span>
+              <button class="audio-btn" onclick="stopAllNarration()" title="Stop"><i class="fa fa-stop"></i></button>
+            </div>
+            <div style="margin-top:10px;background:rgba(255,255,255,0.12);border-radius:10px;padding:10px 14px;font-size:12px;line-height:1.7;opacity:.9;">
+              <i class="fa fa-quote-left" style="margin-right:6px;opacity:.6;"></i>
+              Selamat datang di KB 1. Kita akan mempelajari konsep segiempat — mulai dari pengamatan benda sehari-hari seperti buku, jendela, pintu, dan TV, hingga definisi resmi segiempat sebagai bangun datar dengan 4 sisi, 4 sudut, dan jumlah sudut 360°...
+              <i class="fa fa-quote-right" style="margin-left:6px;opacity:.6;"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="pbl-tag"><i class="fa fa-eye"></i> Mengamati</div>
+          <div class="card-title">Benda Segiempat di Sekitar Kita</div>
+          <div class="obj-row">
+            <div class="obj-item"><div class="obj-ic">📚</div><div class="obj-lbl">Buku</div></div>
+            <div class="obj-item"><div class="obj-ic">🪟</div><div class="obj-lbl">Jendela</div></div>
+            <div class="obj-item"><div class="obj-ic">🚪</div><div class="obj-lbl">Pintu</div></div>
+            <div class="obj-item"><div class="obj-ic">📺</div><div class="obj-lbl">TV</div></div>
+            <div class="obj-item"><div class="obj-ic">🔲</div><div class="obj-lbl">Ubin</div></div>
+            <div class="obj-item"><div class="obj-ic">🖥️</div><div class="obj-lbl">Layar</div></div>
+            <div class="obj-item"><div class="obj-ic">🗒️</div><div class="obj-lbl">Memo</div></div>
+            <div class="obj-item"><div class="obj-ic">🪞</div><div class="obj-lbl">Cermin</div></div>
+          </div>
+          <div class="box orange"><div class="box-title"><i class="fa fa-question-circle"></i> Pertanyaan Pemantik</div>Apakah semua benda tersebut memiliki bentuk yang sama? Apa yang membuat benda-benda itu disebut <strong>segiempat</strong>?</div>
+        </div>
+
+        <!-- Gambar SVG Segiempat -->
+        <div class="card">
+          <div class="pbl-tag"><i class="fa fa-book-open"></i> Mengumpulkan Informasi</div>
+          <div class="card-title"><i class="fa fa-shapes"></i> Bangun Datar Segiempat</div>
+          <p style="font-size:13px;color:var(--text-muted);margin-bottom:14px;"><i class="fa fa-hand-pointer"></i> Klik salah satu gambar bangun untuk melihat detail sifat dan rumusnya!</p>
+          <div class="bangun-grid" id="kb1-bangun-grid"></div>
+          <div class="box green" style="margin-top:14px;">
+            <div class="box-title"><i class="fa fa-check-circle"></i> Ciri-Ciri Segiempat</div>
+            <i class="fa fa-circle-dot" style="color:var(--green);margin-right:6px;"></i>Memiliki <strong>4 titik sudut</strong><br>
+            <i class="fa fa-circle-dot" style="color:var(--green);margin-right:6px;"></i>Memiliki <strong>4 sisi berupa garis lurus</strong><br>
+            <i class="fa fa-circle-dot" style="color:var(--green);margin-right:6px;"></i>Setiap sisi membentuk <strong>bangun tertutup</strong>
+          </div>
+          <div class="defbox">
+            <div class="defbox-label"><i class="fa fa-bookmark"></i> Definisi 1</div>
+            <div class="defbox-text">Segiempat adalah bangun datar yang terbentuk oleh <strong>4 titik</strong> yang dihubungkan oleh <strong>4 garis lurus</strong> sehingga membentuk bangun tertutup, memiliki <strong>4 sisi dan 4 sudut</strong>, dengan jumlah sudut seluruhnya <strong>360°</strong>.</div>
+          </div>
+        </div>
+
+        <!-- GIF animasi -->
+        <div class="card">
+          <div class="card-title"><i class="fa fa-film"></i> Animasi Pembentukan Segiempat</div>
+          <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Perhatikan bagaimana titik-titik dihubungkan membentuk berbagai segiempat:</p>
+          <div class="gif-grid">
+            <div class="gif-card" onclick="openLBById('persegi')">
+              <div style="height:160px;background:linear-gradient(135deg,#dbeafe,#bfdbfe);display:flex;align-items:center;justify-content:center;">
+                <svg viewBox="0 0 120 120" width="100" height="100" style="animation:spinSlow 8s linear infinite;">
+                  <rect x="10" y="10" width="100" height="100" fill="#dbeafe" stroke="#1a56db" stroke-width="4" rx="2"/>
+                  <circle cx="10" cy="10" r="6" fill="#1a56db"><animate attributeName="r" values="6;9;6" dur="1s" repeatCount="indefinite"/></circle>
+                  <circle cx="110" cy="10" r="6" fill="#1a56db"><animate attributeName="r" values="6;9;6" dur="1s" begin=".25s" repeatCount="indefinite"/></circle>
+                  <circle cx="110" cy="110" r="6" fill="#1a56db"><animate attributeName="r" values="6;9;6" dur="1s" begin=".5s" repeatCount="indefinite"/></circle>
+                  <circle cx="10" cy="110" r="6" fill="#1a56db"><animate attributeName="r" values="6;9;6" dur="1s" begin=".75s" repeatCount="indefinite"/></circle>
+                </svg>
+              </div>
+              <div class="gif-caption"><i class="fa fa-square"></i> Persegi — 4 sudut siku-siku</div>
+            </div>
+            <div class="gif-card" onclick="openLBById('pp')">
+              <div style="height:160px;background:linear-gradient(135deg,#fff7ed,#fed7aa);display:flex;align-items:center;justify-content:center;">
+                <svg viewBox="0 0 160 100" width="140" height="90">
+                  <rect x="10" y="15" width="140" height="70" fill="#fff7ed" stroke="#f97316" stroke-width="4" rx="2">
+                    <animate attributeName="rx" values="2;8;2" dur="2s" repeatCount="indefinite"/>
+                  </rect>
+                  <circle cx="10" cy="15" r="6" fill="#f97316"/>
+                  <circle cx="150" cy="15" r="6" fill="#f97316"/>
+                  <circle cx="150" cy="85" r="6" fill="#f97316"/>
+                  <circle cx="10" cy="85" r="6" fill="#f97316"/>
+                </svg>
+              </div>
+              <div class="gif-caption"><i class="fa fa-rectangle-landscape"></i> Persegi Panjang</div>
+            </div>
+            <div class="gif-card" onclick="openLBById('jg')">
+              <div style="height:160px;background:linear-gradient(135deg,#dcfce7,#bbf7d0);display:flex;align-items:center;justify-content:center;">
+                <svg viewBox="0 0 140 100" width="120" height="90">
+                  <polygon points="30,90 120,90 110,10 20,10" fill="#dcfce7" stroke="#16a34a" stroke-width="4">
+                    <animateTransform attributeName="transform" type="skewX" values="0;5;0;-5;0" dur="3s" repeatCount="indefinite"/>
+                  </polygon>
+                </svg>
+              </div>
+              <div class="gif-caption"><i class="fa fa-parallelogram"></i> Jajargenjang</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="pbl-tag" style="background:var(--green-light);color:var(--green);border-color:var(--green);"><i class="fa fa-check"></i> Kesimpulan</div>
+          <div class="box green">
+            <div class="box-title"><i class="fa fa-flag-checkered"></i> Kesimpulan KB 1</div>
+            1. Segiempat banyak dijumpai dalam kehidupan sehari-hari<br>
+            2. Segiempat memiliki <strong>4 sisi dan 4 sudut</strong> (jumlah sudut = 360°)<br>
+            3. Segiempat memiliki berbagai jenis dengan ciri dan sifat yang berbeda
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-primary" data-goto="kb2"><i class="fa fa-arrow-right"></i> Lanjut ke KB 2</button>
+        </div>
+      </div>
+
+      <!-- ===== KB 2 ===== -->
+      <div id="page-kb2" class="page">
+        <div class="sec-hd"><div class="sec-ic orange"><i class="fa fa-shapes"></i></div><div><div class="sec-title">KB 2: Jenis-Jenis Segiempat</div><div class="sec-sub">Klik kartu untuk melihat sifat-sifatnya</div></div></div>
+
+        <div class="audio-player">
+          <div class="audio-thumb"><i class="fa fa-headphones"></i></div>
+          <div class="audio-info" style="width:100%;">
+            <h4><i class="fa fa-volume-high"></i> Audio Penjelasan KB 2 — Jenis-Jenis Segiempat</h4>
+            <p style="font-size:12px;opacity:.8;margin-bottom:6px;">🔊 Narasi akan membacakan penjelasan 6 jenis segiempat secara lengkap</p>
+            <div class="audio-controls">
+              <button class="audio-btn play-pause" onclick="toggleNarration(this)" title="Play / Pause Narasi"><i class="fa fa-play"></i></button>
+              <div class="audio-progress" style="flex:1;">
+                <div class="audio-progress-fill" style="width:0%"></div>
+              </div>
+              <span class="audio-time">0:00 / 0:00</span>
+              <button class="audio-btn" onclick="stopAllNarration()" title="Stop"><i class="fa fa-stop"></i></button>
+            </div>
+            <div style="margin-top:10px;background:rgba(255,255,255,0.12);border-radius:10px;padding:10px 14px;font-size:12px;line-height:1.7;opacity:.9;">
+              <i class="fa fa-quote-left" style="margin-right:6px;opacity:.6;"></i>
+              Segiempat terbagi menjadi 6 jenis: Persegi (4 sisi sama panjang, 4 sudut siku-siku), Persegi Panjang (2 pasang sisi sejajar, 4 sudut siku-siku), Jajargenjang, Trapesium (1 pasang sisi sejajar), Belah Ketupat, dan Layang-layang...
+              <i class="fa fa-quote-right" style="margin-left:6px;opacity:.6;"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="pbl-tag"><i class="fa fa-shapes"></i> 6 Jenis Segiempat</div>
+          <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;"><i class="fa fa-hand-pointer"></i> Klik kartu untuk detail sifat • Klik gambar untuk popup!</p>
+          <div class="shape-grid" id="shape-grid-kb2"></div>
+        </div>
+
+        <div class="card">
+          <div class="pbl-tag"><i class="fa fa-brain"></i> Menalar — Diskusi PBL</div>
+          <div class="problem">
+            <span class="problem-badge"><i class="fa fa-comment"></i> Diskusi</span>
+            💬 <em>"Semua persegi merupakan persegi panjang, tetapi tidak semua persegi panjang merupakan persegi."</em>
+            <br><br>Diskusikan alasan pernyataan tersebut berdasarkan sifat-sifat segiempat yang telah dipelajari!
+          </div>
+          <button class="reveal-btn" data-reveal="diskusi"><i class="fa fa-eye"></i> Lihat Penjelasan</button>
+          <div class="reveal" id="diskusi">
+            <div class="box green" style="margin-top:10px;">
+              <div class="box-title"><i class="fa fa-check-circle"></i> Penjelasan</div>
+              <strong>Persegi</strong> memiliki semua sifat persegi panjang (4 sudut siku-siku, sisi berhadapan sejajar) <em>ditambah</em> semua sisinya sama panjang.<br><br>
+              <strong>Persegi panjang</strong> hanya memerlukan 2 pasang sisi sama panjang, tidak harus semua sisi sama.<br><br>
+              ∴ Persegi adalah kasus khusus dari persegi panjang. ✓
+            </div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-secondary" data-goto="kb1"><i class="fa fa-arrow-left"></i> Kembali</button>
+          <button class="btn btn-primary" data-goto="kb3"><i class="fa fa-arrow-right"></i> Lanjut ke KB 3</button>
+        </div>
+      </div>
+
+      <!-- ===== KB 3 ===== -->
+      <div id="page-kb3" class="page">
+        <div class="sec-hd"><div class="sec-ic green"><i class="fa fa-magnifying-glass"></i></div><div><div class="sec-title">KB 3: Sifat-Sifat Segiempat</div><div class="sec-sub">Perbandingan sifat setiap jenis</div></div></div>
+
+        <div class="audio-player" style="background:linear-gradient(135deg,#16a34a,#22c55e);">
+          <div class="audio-thumb"><i class="fa fa-headphones"></i></div>
+          <div class="audio-info" style="width:100%;">
+            <h4><i class="fa fa-volume-high"></i> Audio Penjelasan KB 3 — Sifat-Sifat Segiempat</h4>
+            <p style="font-size:12px;opacity:.8;margin-bottom:6px;">🔊 Klik Play untuk mendengarkan penjelasan sifat-sifat tiap jenis segiempat</p>
+            <div class="audio-controls">
+              <button class="audio-btn play-pause" onclick="toggleNarration(this)" title="Play / Pause"><i class="fa fa-play"></i></button>
+              <div class="audio-progress" style="flex:1;"><div class="audio-progress-fill" style="width:0%"></div></div>
+              <span class="audio-time">0:00 / 0:00</span>
+              <button class="audio-btn" onclick="stopAllNarration()" title="Stop"><i class="fa fa-stop"></i></button>
+            </div>
+            <div style="margin-top:10px;background:rgba(255,255,255,0.12);border-radius:10px;padding:10px 14px;font-size:12px;line-height:1.7;opacity:.9;">
+              <i class="fa fa-quote-left" style="margin-right:6px;opacity:.6;"></i>
+              Persegi punya semua sisi sama panjang, semua sudut siku-siku, diagonal sama panjang dan tegak lurus. Persegi Panjang punya 2 pasang sisi sama, semua sudut siku-siku. Ingat: semua persegi adalah persegi panjang, tapi tidak sebaliknya...
+              <i class="fa fa-quote-right" style="margin-left:6px;opacity:.6;"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><i class="fa fa-table"></i> Tabel Sifat-Sifat Segiempat</div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th style="text-align:left;min-width:200px;">Sifat</th><th>P</th><th>PP</th><th>JG</th><th>BK</th><th>LL</th><th>TR</th></tr>
+              </thead>
+              <tbody>
+                <tr><td style="text-align:left;font-weight:700;">Semua sisi sama panjang</td><td class="ck">✓</td><td class="cx">✗</td><td class="cx">✗</td><td class="ck">✓</td><td class="cx">✗</td><td class="cx">✗</td></tr>
+                <tr><td style="text-align:left;font-weight:700;">Semua sudut siku-siku (90°)</td><td class="ck">✓</td><td class="ck">✓</td><td class="cx">✗</td><td class="cx">✗</td><td class="cx">✗</td><td class="cx">✗</td></tr>
+                <tr><td style="text-align:left;font-weight:700;">Sudut berhadapan sama besar</td><td class="ck">✓</td><td class="ck">✓</td><td class="ck">✓</td><td class="ck">✓</td><td class="cx">✗</td><td class="cx">✗</td></tr>
+                <tr><td style="text-align:left;font-weight:700;">Sisi berhadapan sejajar</td><td class="ck">✓</td><td class="ck">✓</td><td class="ck">✓</td><td class="ck">✓</td><td class="cx">✗</td><td class="cx">✗</td></tr>
+                <tr><td style="text-align:left;font-weight:700;">Diagonal saling tegak lurus</td><td class="ck">✓</td><td class="cx">✗</td><td class="cx">✗</td><td class="ck">✓</td><td class="ck">✓</td><td class="cx">✗</td></tr>
+                <tr><td style="text-align:left;font-weight:700;">Diagonal sama panjang</td><td class="ck">✓</td><td class="ck">✓</td><td class="cx">✗</td><td class="cx">✗</td><td class="cx">✗</td><td class="cx">✗</td></tr>
+                <tr><td style="text-align:left;font-weight:700;">2 pasang sisi berdekatan sama</td><td class="cx">✗</td><td class="cx">✗</td><td class="cx">✗</td><td class="cx">✗</td><td class="ck">✓</td><td class="cx">✗</td></tr>
+                <tr><td style="text-align:left;font-weight:700;">Ada satu pasang sisi sejajar</td><td class="ck">✓</td><td class="ck">✓</td><td class="ck">✓</td><td class="ck">✓</td><td class="cx">✗</td><td class="ck">✓</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:8px;"><i class="fa fa-info-circle"></i> P=Persegi, PP=Persegi Panjang, JG=Jajargenjang, BK=Belah Ketupat, LL=Layang-layang, TR=Trapesium</div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><i class="fa fa-file-alt"></i> Contoh Soal</div>
+          <div class="tabs" id="tabs-kb3">
+            <div class="tab active" data-tab="soal1p">Soal 1</div>
+            <div class="tab" data-tab="soal2p">Soal 2</div>
+          </div>
+          <div class="tab-panel active" id="soal1p">
+            <div class="problem"><span class="problem-badge">Soal 1</span>Diketahui ABCD adalah persegi.<br>a) Sebutkan sisi-sisi yang sama panjang!<br>b) Tentukan besar sudut ABC!</div>
+            <button class="reveal-btn" data-reveal="j1"><i class="fa fa-eye"></i> Lihat Jawaban</button>
+            <div class="reveal" id="j1">
+              <div class="box green" style="margin-top:10px;">
+                <div class="box-title"><i class="fa fa-check"></i> Jawaban</div>
+                a) Persegi — semua sisi sama panjang:<div class="math-box">AB = BC = CD = DA</div>
+                b) Semua sudut persegi siku-siku:<div class="math-box">∠ABC = 90°</div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-panel" id="soal2p">
+            <div class="problem"><span class="problem-badge">Soal 2</span>Persegi ABCD, O = titik potong diagonal. AB = 6 cm, AO = 3√2 cm.<br>Tentukan: BC, CD, AD; CO, BO, DO; AC & BD; ∠ABC & ∠AOB.</div>
+            <button class="reveal-btn" data-reveal="j2"><i class="fa fa-eye"></i> Lihat Jawaban</button>
+            <div class="reveal" id="j2">
+              <div class="box green" style="margin-top:10px;">
+                <div class="box-title"><i class="fa fa-check"></i> Jawaban</div>
+                a) <div class="math-box">BC = CD = AD = 6 cm</div>
+                b) <div class="math-box">BO = CO = DO = 3√2 cm</div>
+                c) <div class="math-box">AC = BD = s√2 = 6√2 cm</div>
+                d) ∠ABC = 90° | ∠AOB = 90° (diagonal tegak lurus)
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-secondary" data-goto="kb2"><i class="fa fa-arrow-left"></i> Kembali</button>
+          <button class="btn btn-primary" data-goto="kb4"><i class="fa fa-arrow-right"></i> Lanjut ke KB 4</button>
+        </div>
+      </div>
+
+      <!-- ===== KB 4 ===== -->
+      <div id="page-kb4" class="page">
+        <div class="sec-hd"><div class="sec-ic purple"><i class="fa fa-ruler-combined"></i></div><div><div class="sec-title">KB 4: Keliling & Luas</div><div class="sec-sub">Rumus dan penerapan dalam kehidupan</div></div></div>
+
+        <div class="audio-player" style="background:linear-gradient(135deg,#7c3aed,#a855f7);">
+          <div class="audio-thumb"><i class="fa fa-headphones"></i></div>
+          <div class="audio-info" style="width:100%;">
+            <h4><i class="fa fa-volume-high"></i> Audio Penjelasan KB 4 — Keliling &amp; Luas Segiempat</h4>
+            <p style="font-size:12px;opacity:.8;margin-bottom:6px;">🔊 Klik Play untuk mendengarkan penjelasan rumus keliling dan luas segiempat</p>
+            <div class="audio-controls">
+              <button class="audio-btn play-pause" onclick="toggleNarration(this)" title="Play / Pause"><i class="fa fa-play"></i></button>
+              <div class="audio-progress" style="flex:1;"><div class="audio-progress-fill" style="width:0%"></div></div>
+              <span class="audio-time">0:00 / 0:00</span>
+              <button class="audio-btn" onclick="stopAllNarration()" title="Stop"><i class="fa fa-stop"></i></button>
+            </div>
+            <div style="margin-top:10px;background:rgba(255,255,255,0.12);border-radius:10px;padding:10px 14px;font-size:12px;line-height:1.7;opacity:.9;">
+              <i class="fa fa-quote-left" style="margin-right:6px;opacity:.6;"></i>
+              Keliling Persegi = 4×s, Luas = s². Keliling Persegi Panjang = 2(p+l), Luas = p×l. Luas Trapesium = ½×(a+b)×t. Luas Belah Ketupat & Layang-layang = ½×d₁×d₂. Gunakan kalkulator interaktif untuk mencoba langsung!
+              <i class="fa fa-quote-right" style="margin-left:6px;opacity:.6;"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><i class="fa fa-border-all"></i> Rumus Keliling</div>
+          <div class="formula-grid">
+            <div class="formula-card"><div class="f-shape"><svg width="50" height="50"><rect x="5" y="5" width="40" height="40" fill="#dbeafe" stroke="#1a56db" stroke-width="3"/></svg></div><div class="f-name">Persegi</div><div class="f-eq">K = 4 × s</div></div>
+            <div class="formula-card"><div class="f-shape"><svg width="70" height="45"><rect x="5" y="7" width="60" height="31" fill="#fff7ed" stroke="#f97316" stroke-width="3"/></svg></div><div class="f-name">Persegi Panjang</div><div class="f-eq">K = 2(p + l)</div></div>
+            <div class="formula-card"><div class="f-shape"><svg width="70" height="50"><polygon points="20,45 65,45 50,5 5,5" fill="#dcfce7" stroke="#16a34a" stroke-width="3"/></svg></div><div class="f-name">Jajargenjang</div><div class="f-eq">K = 2(a + b)</div></div>
+            <div class="formula-card"><div class="f-shape"><svg width="50" height="50"><polygon points="25,2 48,25 25,48 2,25" fill="#fee2e2" stroke="#dc2626" stroke-width="3"/></svg></div><div class="f-name">Belah Ketupat</div><div class="f-eq">K = 4 × s</div></div>
+            <div class="formula-card"><div class="f-shape"><svg width="50" height="60"><polygon points="25,2 48,30 25,58 2,30" fill="#fefce8" stroke="#ca8a04" stroke-width="3"/></svg></div><div class="f-name">Layang-layang</div><div class="f-eq">K = 2(a + b)</div></div>
+            <div class="formula-card"><div class="f-shape"><svg width="70" height="50"><polygon points="15,45 55,45 45,5 25,5" fill="#ede9fe" stroke="#7c3aed" stroke-width="3"/></svg></div><div class="f-name">Trapesium</div><div class="f-eq">K = a+b+c+d</div></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><i class="fa fa-square-full"></i> Rumus Luas</div>
+          <div class="formula-grid">
+            <div class="formula-card"><div class="f-shape"><svg width="50" height="50"><rect x="5" y="5" width="40" height="40" fill="#dbeafe" stroke="#1a56db" stroke-width="3"/></svg></div><div class="f-name">Persegi</div><div class="f-eq">L = s²</div></div>
+            <div class="formula-card"><div class="f-shape"><svg width="70" height="45"><rect x="5" y="7" width="60" height="31" fill="#fff7ed" stroke="#f97316" stroke-width="3"/></svg></div><div class="f-name">Persegi Panjang</div><div class="f-eq">L = p × l</div></div>
+            <div class="formula-card"><div class="f-shape"><svg width="70" height="50"><polygon points="20,45 65,45 50,5 5,5" fill="#dcfce7" stroke="#16a34a" stroke-width="3"/></svg></div><div class="f-name">Jajargenjang</div><div class="f-eq">L = a × t</div></div>
+            <div class="formula-card"><div class="f-shape"><svg width="50" height="50"><polygon points="25,2 48,25 25,48 2,25" fill="#fee2e2" stroke="#dc2626" stroke-width="3"/></svg></div><div class="f-name">Belah Ketupat</div><div class="f-eq">L = ½ × d₁ × d₂</div></div>
+            <div class="formula-card"><div class="f-shape"><svg width="50" height="60"><polygon points="25,2 48,30 25,58 2,30" fill="#fefce8" stroke="#ca8a04" stroke-width="3"/></svg></div><div class="f-name">Layang-layang</div><div class="f-eq">L = ½ × d₁ × d₂</div></div>
+            <div class="formula-card"><div class="f-shape"><svg width="70" height="50"><polygon points="15,45 55,45 45,5 25,5" fill="#ede9fe" stroke="#7c3aed" stroke-width="3"/></svg></div><div class="f-name">Trapesium</div><div class="f-eq">L = ½(a+b)×t</div></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><i class="fa fa-calculator"></i> Kalkulator Interaktif</div>
+          <select id="calc-shape" style="margin-bottom:12px;">
+            <option value="persegi">Persegi</option>
+            <option value="pp">Persegi Panjang</option>
+            <option value="jg">Jajargenjang</option>
+            <option value="bk">Belah Ketupat</option>
+            <option value="ll">Layang-layang</option>
+            <option value="tr">Trapesium</option>
+          </select>
+          <div class="calc-inputs" id="calc-inputs"></div>
+          <button class="btn btn-orange" id="btn-calc"><i class="fa fa-calculator"></i> Hitung</button>
+          <div id="calc-result" style="margin-top:14px;"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><i class="fa fa-lightbulb"></i> Contoh Soal Kontekstual</div>
+          <div class="problem"><span class="problem-badge"><i class="fa fa-home"></i> Masalah 1</span>
+            Bu Ani ingin memasang keramik di lantai kamar 6m × 4m. Keramik berukuran 30cm × 30cm. Berapa keramik yang dibutuhkan?
+          </div>
+          <button class="reveal-btn" data-reveal="sol1"><i class="fa fa-eye"></i> Lihat Penyelesaian</button>
+          <div class="reveal" id="sol1">
+            <div class="box green" style="margin-top:10px;">
+              <div class="box-title"><i class="fa fa-check"></i> Penyelesaian</div>
+              Luas lantai = 6 × 4 = 24 m² = 240.000 cm²<br>
+              Luas keramik = 30 × 30 = 900 cm²
+              <div class="math-box">Jumlah = 240.000 ÷ 900 = <strong>267 keramik</strong></div>
+            </div>
+          </div>
+          <div class="problem" style="margin-top:14px;"><span class="problem-badge"><i class="fa fa-tree"></i> Masalah 2</span>
+            Pak Budi memiliki kebun trapesium: sisi sejajar 12m & 8m, tinggi 6m. Berapa luas kebunnya?
+          </div>
+          <button class="reveal-btn" data-reveal="sol2"><i class="fa fa-eye"></i> Lihat Penyelesaian</button>
+          <div class="reveal" id="sol2">
+            <div class="box green" style="margin-top:10px;">
+              <div class="box-title"><i class="fa fa-check"></i> Penyelesaian</div>
+              <div class="math-box">L = ½ × (12+8) × 6 = ½ × 20 × 6 = <strong>60 m²</strong></div>
+            </div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-secondary" data-goto="kb3"><i class="fa fa-arrow-left"></i> Kembali</button>
+          <button class="btn btn-primary" data-goto="video"><i class="fa fa-arrow-right"></i> Lanjut ke Video</button>
+        </div>
+      </div>
+
+      <!-- ===== VIDEO PEMBELAJARAN ===== -->
+      <div id="page-video" class="page">
+        <div class="sec-hd"><div class="sec-ic blue"><i class="fa fa-video"></i></div><div><div class="sec-title">Video Pembelajaran</div><div class="sec-sub">Tonton penjelasan materi segiempat</div></div></div>
+
+        <div class="box blue"><div class="box-title"><i class="fa fa-info-circle"></i> Petunjuk</div>Klik tombol <strong>▶ Play</strong> pada video untuk menontonnya langsung. Video membahas konsep, sifat, dan cara menghitung keliling serta luas segiempat.</div>
+
+        <!-- VIDEO 1 -->
+        <div class="card">
+          <div class="card-title"><i class="fab fa-youtube" style="color:#dc2626;"></i> Video 1 — Konsep &amp; Jenis Segiempat</div>
+          <div class="video-thumb-wrap" id="vw1">
+            <div class="video-thumb" onclick="openVideoModal('https://www.youtube.com/embed/mZKZPeB4TIQ?autoplay=1&rel=0','Segiempat — Persegi, Persegi Panjang, Jajargenjang, Belah Ketupat, Layang-layang, Trapesium')">
+              <img src="https://img.youtube.com/vi/mZKZPeB4TIQ/hqdefault.jpg" alt="Video 1" onerror="this.src='https://placehold.co/640x360/1a56db/white?text=Video+1'"/>
+              <div class="video-thumb-overlay">
+                <div class="play-btn-big"><i class="fa fa-play"></i></div>
+                <div class="video-thumb-info">
+                  <div class="video-thumb-title">Segiempat — Konsep &amp; Semua Jenis</div>
+                  <div class="video-thumb-sub"><i class="fab fa-youtube"></i> Klik untuk menonton di popup</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:10px;">
+            <a href="https://www.youtube.com/watch?v=mZKZPeB4TIQ" target="_blank" class="btn btn-secondary" style="font-size:13px;text-decoration:none;">
+              <i class="fab fa-youtube" style="color:#dc2626;"></i> Buka di YouTube
+            </a>
+          </div>
+        </div>
+
+        <!-- VIDEO 2 -->
+        <div class="card">
+          <div class="card-title"><i class="fab fa-youtube" style="color:#dc2626;"></i> Video 2 — Keliling &amp; Luas Segiempat</div>
+          <div class="video-thumb-wrap" id="vw2">
+            <div class="video-thumb" onclick="openVideoModal('https://www.youtube.com/embed/9nfLqcNLbh0?autoplay=1&rel=0','Luas dan Keliling Persegi &amp; Persegi Panjang — Matematika SMP')">
+              <img src="https://img.youtube.com/vi/9nfLqcNLbh0/hqdefault.jpg" alt="Video 2" onerror="this.src='https://placehold.co/640x360/f97316/white?text=Video+2'"/>
+              <div class="video-thumb-overlay">
+                <div class="play-btn-big"><i class="fa fa-play"></i></div>
+                <div class="video-thumb-info">
+                  <div class="video-thumb-title">Luas &amp; Keliling Segiempat</div>
+                  <div class="video-thumb-sub"><i class="fab fa-youtube"></i> Klik untuk menonton di popup</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:10px;">
+            <a href="https://www.youtube.com/watch?v=9nfLqcNLbh0" target="_blank" class="btn btn-secondary" style="font-size:13px;text-decoration:none;">
+              <i class="fab fa-youtube" style="color:#dc2626;"></i> Buka di YouTube
+            </a>
+          </div>
+        </div>
+
+        <!-- VIDEO 3 -->
+        <div class="card">
+          <div class="card-title"><i class="fab fa-youtube" style="color:#dc2626;"></i> Video 3 — Jenis &amp; Sifat-Sifat Segiempat</div>
+          <div class="video-thumb-wrap" id="vw3">
+            <div class="video-thumb" onclick="openVideoModal('https://www.youtube.com/embed/wYKi1QhZGCU?autoplay=1&rel=0','Jenis-Jenis dan Sifat-Sifat Segiempat — Matematika SMP Kelas 7')">
+              <img src="https://img.youtube.com/vi/wYKi1QhZGCU/hqdefault.jpg" alt="Video 3" onerror="this.src='https://placehold.co/640x360/16a34a/white?text=Video+3'"/>
+              <div class="video-thumb-overlay">
+                <div class="play-btn-big"><i class="fa fa-play"></i></div>
+                <div class="video-thumb-info">
+                  <div class="video-thumb-title">Jenis &amp; Sifat-Sifat Segiempat</div>
+                  <div class="video-thumb-sub"><i class="fab fa-youtube"></i> Klik untuk menonton di popup</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:10px;">
+            <a href="https://www.youtube.com/watch?v=wYKi1QhZGCU" target="_blank" class="btn btn-secondary" style="font-size:13px;text-decoration:none;">
+              <i class="fab fa-youtube" style="color:#dc2626;"></i> Buka di YouTube
+            </a>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-secondary" data-goto="kb4"><i class="fa fa-arrow-left"></i> Kembali</button>
+          <button class="btn btn-primary" data-goto="lkpd"><i class="fa fa-arrow-right"></i> Lanjut ke LKPD</button>
+        </div>
+      </div>
+
+      <!-- ===== LKPD ===== -->
+      <div id="page-lkpd" class="page">
+        <div class="sec-hd"><div class="sec-ic yellow"><i class="fa fa-file-pen"></i></div><div><div class="sec-title">LKPD Digital</div><div class="sec-sub">Lembar Kerja Peserta Didik</div></div></div>
+        <div class="box orange"><div class="box-title"><i class="fa fa-info-circle"></i> Petunjuk</div>Kerjakan setiap bagian secara mandiri atau bersama kelompok. Isi setiap kolom yang tersedia dengan jawaban yang tepat dan sistematis.</div>
+        <div class="card">
+          <div class="card-title"><i class="fa fa-1"></i> Bagian 1 — Identifikasi Segiempat</div>
+          <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Sebutkan 2 benda di sekitar rumahmu yang berbentuk segiempat dan jelaskan alasannya!</p>
+          <div style="margin-bottom:10px;"><label style="font-size:12px;font-weight:700;color:var(--text-muted);"><i class="fa fa-pen"></i> Benda 1 dan alasannya:</label><textarea placeholder="Contoh: Pintu rumah — karena memiliki 4 sisi dan 4 sudut siku-siku, mudah dibuka dan ditutup..."></textarea></div>
+          <div><label style="font-size:12px;font-weight:700;color:var(--text-muted);"><i class="fa fa-pen"></i> Benda 2 dan alasannya:</label><textarea placeholder="Tulis jawabanmu di sini..."></textarea></div>
+        </div>
+        <div class="card">
+          <div class="card-title"><i class="fa fa-2"></i> Bagian 2 — Masalah Kontekstual PBL</div>
+          <div class="problem"><span class="problem-badge"><i class="fa fa-school"></i> Masalah</span>
+            Sekolah akan merenovasi taman berbentuk trapesium dengan sisi sejajar 15m dan 9m, tinggi 8m, dan sisi miring masing-masing 10m.<br><br>
+            a) Berapa luas taman yang akan ditanami rumput?<br>
+            b) Berapa meter pagar yang dibutuhkan mengelilingi taman?<br>
+            c) Jika biaya pagar Rp 150.000/meter, berapa total biaya pagar?
+          </div>
+          <label style="font-size:12px;font-weight:700;color:var(--text-muted);"><i class="fa fa-pen"></i> Penyelesaianmu (langkah demi langkah):</label>
+          <textarea style="min-height:110px;" placeholder="a) Luas = ½ × (a+b) × t = ½ × (15+9) × 8 = ...\nb) Keliling = 15 + 9 + 10 + 10 = ...\nc) Biaya = ... × Rp 150.000 = ..."></textarea>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-green" data-goto="evaluasi"><i class="fa fa-check"></i> Selesai, Lanjut Evaluasi</button>
+        </div>
+      </div>
+
+      <!-- ===== EVALUASI ===== -->
+      <div id="page-evaluasi" class="page">
+        <div class="sec-hd"><div class="sec-ic blue"><i class="fa fa-chart-bar"></i></div><div><div class="sec-title">Kuis Evaluasi</div><div class="sec-sub">Uji pemahamanmu — 10 soal pilihan ganda</div></div></div>
+        <div class="box blue"><div class="box-title"><i class="fa fa-info-circle"></i> Petunjuk</div>Pilih satu jawaban yang paling tepat. Klik <strong>"Lihat Hasil"</strong> setelah menjawab semua soal.</div>
+        <div id="quiz-container"></div>
+        <div class="btn-row">
+          <button class="btn btn-primary" id="btn-submit"><i class="fa fa-check"></i> Lihat Hasil</button>
+          <button class="btn btn-secondary" id="btn-reset" style="display:none;"><i class="fa fa-rotate"></i> Ulangi Kuis</button>
+        </div>
+        <div id="quiz-result" style="display:none;margin-top:18px;"></div>
+      </div>
+
+      <!-- ===== REFLEKSI ===== -->
+      <div id="page-refleksi" class="page">
+        <div class="sec-hd"><div class="sec-ic green"><i class="fa fa-mirror"></i></div><div><div class="sec-title">Refleksi Pembelajaran</div><div class="sec-sub">Evaluasi diri dan penutup</div></div></div>
+        <div class="card">
+          <div class="card-title"><i class="fa fa-mirror"></i> Refleksi Diri</div>
+          <div style="margin-bottom:12px;"><label style="font-size:12px;font-weight:700;color:var(--text-muted);">1. Hal baru yang kamu pelajari tentang segiempat:</label><textarea placeholder="Tuliskan refleksimu..."></textarea></div>
+          <div style="margin-bottom:12px;"><label style="font-size:12px;font-weight:700;color:var(--text-muted);">2. Bagian yang paling sulit dipahami:</label><textarea placeholder="Tuliskan refleksimu..."></textarea></div>
+          <div style="margin-bottom:12px;"><label style="font-size:12px;font-weight:700;color:var(--text-muted);">3. Penerapan konsep segiempat dalam kehidupan sehari-hari:</label><textarea placeholder="Tuliskan refleksimu..."></textarea></div>
+          <div><label style="font-size:12px;font-weight:700;color:var(--text-muted);">4. Penilaian e-modul (klik bintang):</label>
+            <div class="star-row" id="star-row">
+              <span class="star" data-v="1">⭐</span>
+              <span class="star" data-v="2">⭐</span>
+              <span class="star" data-v="3">⭐</span>
+              <span class="star" data-v="4">⭐</span>
+              <span class="star" data-v="5">⭐</span>
+            </div>
+            <textarea placeholder="Saran untuk penyusun e-modul..."></textarea>
+          </div>
+        </div>
+        <div style="background:linear-gradient(135deg,#1a56db,#06b6d4);border-radius:20px;padding:28px;text-align:center;color:#fff;margin-top:8px;">
+          <div style="font-size:40px;margin-bottom:10px;animation:floatBob 2s infinite;">🎉</div>
+          <div style="font-family:'Baloo 2',cursive;font-size:22px;font-weight:800;margin-bottom:8px;">Selamat Menyelesaikan E-Modul!</div>
+          <div style="font-size:13px;opacity:.88;margin-bottom:12px;">Semoga ilmu yang didapat bermanfaat dalam kehidupan sehari-hari.<br>Teruslah belajar dan berlatih! 💪</div>
+          <div style="font-size:12px;opacity:.72;">Disusun oleh: <strong>Indriya Anggraeni</strong> | NIM. 23510043<br>Program Studi Pendidikan Matematika | Cimahi, 2026</div>
+        </div>
+      </div>
+
+    </div><!-- end content -->
+  </div><!-- end layout -->
+</div><!-- end app -->
+
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa fa-chevron-up"></i></button>
+
+<script>
+// ==============================
+// DATA BANGUN DATAR
+// ==============================
+var shapes = {
+  persegi:{
+    name:'Persegi', color:'#1a56db', fill:'#dbeafe',
+    svg:'<svg viewBox="0 0 120 120" width="110" height="110"><rect x="10" y="10" width="100" height="100" fill="#dbeafe" stroke="#1a56db" stroke-width="4"/><text x="55" y="58" text-anchor="middle" fill="#1a56db" font-size="11" font-weight="bold">s</text><text x="55" y="108" text-anchor="middle" fill="#1a56db" font-size="10">s</text><text x="108" y="65" fill="#1a56db" font-size="10">s</text><text x="2" y="65" fill="#1a56db" font-size="10">s</text></svg>',
+    props:['Empat sisi sama panjang','Empat sudut siku-siku (90°)','Dua pasang sisi berhadapan sejajar','Diagonal sama panjang dan tegak lurus','Memiliki 4 sumbu simetri'],
+    formula:'K = 4 × s | L = s²'
+  },
+  pp:{
+    name:'Persegi Panjang', color:'#f97316', fill:'#fff7ed',
+    svg:'<svg viewBox="0 0 160 100" width="150" height="95"><rect x="10" y="15" width="140" height="70" fill="#fff7ed" stroke="#f97316" stroke-width="4"/><text x="78" y="55" text-anchor="middle" fill="#f97316" font-size="11" font-weight="bold">p</text><text x="78" y="100" text-anchor="middle" fill="#f97316" font-size="10">p</text><text x="155" y="55" fill="#f97316" font-size="10">l</text><text x="2" y="55" fill="#f97316" font-size="10">l</text></svg>',
+    props:['Dua pasang sisi berhadapan sama panjang & sejajar','Empat sudut siku-siku (90°)','Diagonal sama panjang tetapi tidak tegak lurus','Memiliki 2 sumbu simetri'],
+    formula:'K = 2(p + l) | L = p × l'
+  },
+  jg:{
+    name:'Jajargenjang', color:'#16a34a', fill:'#dcfce7',
+    svg:'<svg viewBox="0 0 160 100" width="150" height="95"><polygon points="30,85 150,85 130,15 10,15" fill="#dcfce7" stroke="#16a34a" stroke-width="4"/><text x="80" y="58" text-anchor="middle" fill="#16a34a" font-size="11" font-weight="bold">a</text></svg>',
+    props:['Dua pasang sisi berhadapan sejajar dan sama panjang','Sudut-sudut berhadapan sama besar','Diagonal saling berpotongan tetapi tidak sama panjang','Jumlah sudut berdekatan = 180°'],
+    formula:'K = 2(a + b) | L = a × t'
+  },
+  tr:{
+    name:'Trapesium', color:'#7c3aed', fill:'#ede9fe',
+    svg:'<svg viewBox="0 0 160 100" width="150" height="95"><polygon points="20,85 140,85 110,15 50,15" fill="#ede9fe" stroke="#7c3aed" stroke-width="4"/><text x="80" y="30" text-anchor="middle" fill="#7c3aed" font-size="10">b</text><text x="80" y="98" text-anchor="middle" fill="#7c3aed" font-size="10">a</text></svg>',
+    props:['Satu pasang sisi sejajar (sisi a dan b)','Dua sisi lainnya tidak sejajar','Jumlah sudut berdekatan pada sisi sejajar = 180°'],
+    formula:'K = a+b+c+d | L = ½(a+b)×t'
+  },
+  bk:{
+    name:'Belah Ketupat', color:'#dc2626', fill:'#fee2e2',
+    svg:'<svg viewBox="0 0 120 120" width="110" height="110"><polygon points="60,5 115,60 60,115 5,60" fill="#fee2e2" stroke="#dc2626" stroke-width="4"/><text x="60" y="65" text-anchor="middle" fill="#dc2626" font-size="11" font-weight="bold">s</text></svg>',
+    props:['Empat sisi sama panjang','Sudut-sudut berhadapan sama besar','Diagonal saling berpotongan tegak lurus','Diagonal membagi dua sama panjang','Tidak semua sudutnya siku-siku'],
+    formula:'K = 4 × s | L = ½ × d₁ × d₂'
+  },
+  ll:{
+    name:'Layang-layang', color:'#ca8a04', fill:'#fefce8',
+    svg:'<svg viewBox="0 0 120 140" width="110" height="130"><polygon points="60,5 115,65 60,135 5,65" fill="#fefce8" stroke="#ca8a04" stroke-width="4"/><text x="60" y="75" text-anchor="middle" fill="#ca8a04" font-size="11" font-weight="bold">d₂</text></svg>',
+    props:['Dua pasang sisi berdekatan sama panjang','Sepasang sudut berhadapan sama besar','Diagonal saling berpotongan tegak lurus','Salah satu diagonal membagi dua yang lain'],
+    formula:'K = 2(a+b) | L = ½ × d₁ × d₂'
+  }
+};
+
+var shapeKeys = ['persegi','pp','jg','tr','bk','ll'];
+
+// ==============================
+// BUILD BANGUN GRID
+// ==============================
+function buildBangunGrid(containerId){
+  var c = document.getElementById(containerId);
+  if(!c) return;
+  c.innerHTML = shapeKeys.map(function(k){
+    var s = shapes[k];
+    return '<div class="bangun-item" onclick="openLBById(\''+k+'\')">'+
+      '<span class="popup-hint"><i class="fa fa-expand"></i> Detail</span>'+
+      s.svg+
+      '<div class="b-name">'+s.name+'</div>'+
+      '<div class="b-sub">Klik untuk info</div>'+
+    '</div>';
+  }).join('');
+}
+
+// ==============================
+// LIGHTBOX / POPUP
+// ==============================
+function openLBById(key){
+  var s = shapes[key];
+  if(!s) return;
+  document.getElementById('lb-name').textContent = s.name;
+  document.getElementById('lb-svg').innerHTML = '<div style="display:flex;justify-content:center;">'+s.svg+'</div>';
+  document.getElementById('lb-props').innerHTML = s.props.map(function(p){return '<li>'+p+'</li>';}).join('');
+  document.getElementById('lb-formula').innerHTML = '<i class="fa fa-square-root-variable"></i> Rumus: <strong>'+s.formula+'</strong>';
+  document.getElementById('lb-formula').style.borderLeft = '4px solid '+s.color;
+  document.getElementById('lightbox').classList.add('show');
+}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('show');}
+function closeLB(e){if(e.target===document.getElementById('lightbox')) closeLightbox();}
+
+// ==============================
+// SHAPE GRID KB2
+// ==============================
+function buildShapeGridKB2(){
+  var c = document.getElementById('shape-grid-kb2');
+  if(!c) return;
+  c.innerHTML = shapeKeys.map(function(k){
+    var s = shapes[k];
+    return '<div class="shape-card" data-shape="'+k+'" style="border-top: 4px solid '+s.color+';">'+
+      '<div class="shape-card-hd">'+
+        '<div onclick="openLBById(\''+k+'\')" title="Lihat detail" style="cursor:zoom-in;">'+s.svg.replace('width="110"','width="60"').replace('height="110"','height="60"').replace('width="150"','width="70"').replace('height="95"','height="55"').replace('width="130"','width="65"').replace('height="130"','height="65"')+'</div>'+
+        '<div class="shape-name" style="color:'+s.color+';">'+s.name+'</div>'+
+      '</div>'+
+      '<div class="shape-hint"><i class="fa fa-hand-pointer"></i> Klik kartu untuk sifat</div>'+
+      '<ul class="shape-props">'+s.props.map(function(p){return '<li>'+p+'</li>';}).join('')+'</ul>'+
+    '</div>';
+  }).join('');
+  c.querySelectorAll('.shape-card').forEach(function(card){
+    card.addEventListener('click', function(e){
+      if(e.target.closest('svg')) return;
+      this.classList.toggle('open');
+    });
+  });
+}
+
+// ==============================
+// NAVIGATION
+// ==============================
+var done=[false,false,false,false];
+function goPage(id){
+  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});
+  var pg=document.getElementById('page-'+id);
+  if(pg) pg.classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(function(n){n.classList.toggle('active',n.getAttribute('data-page')===id);});
+  if(id==='kb2') markDone(0);
+  if(id==='kb3') markDone(1);
+  if(id==='kb4') markDone(2);
+  if(id==='lkpd'||id==='evaluasi'||id==='video') markDone(3);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function markDone(i){done[i]=true;updateProg();}
+function updateProg(){
+  var c=done.filter(Boolean).length;
+  document.getElementById('prog-text').textContent=c+'/4 selesai';
+  document.getElementById('prog-fill').style.width=(c/4*100)+'%';
+}
+
+// ==============================
+// REVEAL
+// ==============================
+document.addEventListener('click',function(e){
+  var rb=e.target.closest('.reveal-btn');
+  if(rb){
+    var id=rb.getAttribute('data-reveal');
+    var el=document.getElementById(id);
+    if(el){
+      el.classList.toggle('show');
+      rb.innerHTML=el.classList.contains('show')?'<i class="fa fa-eye-slash"></i> Sembunyikan':'<i class="fa fa-eye"></i> Lihat Penjelasan/Jawaban';
+    }
+  }
+  var gt=e.target.closest('[data-goto]');
+  if(gt) goPage(gt.getAttribute('data-goto'));
+});
+
+// ==============================
+// TABS
+// ==============================
+document.addEventListener('click',function(e){
+  var tab=e.target.closest('.tab');
+  if(!tab) return;
+  var tabsEl=tab.closest('.tabs');
+  tabsEl.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});
+  tab.classList.add('active');
+  var panelId=tab.getAttribute('data-tab');
+  var parent=tabsEl.parentElement;
+  parent.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
+  var panel=document.getElementById(panelId);
+  if(panel) panel.classList.add('active');
+});
+
+// ==============================
+// NAV CLICK
+// ==============================
+document.querySelectorAll('.nav-item').forEach(function(el){
+  el.addEventListener('click',function(){goPage(this.getAttribute('data-page'));});
+});
+
+// ==============================
+// STAR RATING
+// ==============================
+document.getElementById('star-row').querySelectorAll('.star').forEach(function(s){
+  s.addEventListener('click',function(){
+    var v=parseInt(this.getAttribute('data-v'));
+    document.querySelectorAll('#star-row .star').forEach(function(st,i){st.classList.toggle('on',i<v);});
+  });
+});
+
+// ==============================
+// BACKGROUND MUSIC
+// ==============================
+var bgPlaying=false;
+function toggleBg(){
+  var a=document.getElementById('bgAudio');
+  bgPlaying=!bgPlaying;
+  if(bgPlaying){a.volume=0.15;a.play().catch(function(){});}
+  else{a.pause();}
+  document.getElementById('bgIcon').className=bgPlaying?'fa fa-pause':'fa fa-music';
+  document.getElementById('bgLabel').textContent=bgPlaying?'Pause':'Musik';
+}
+
+// ==============================
+// NARASI AUDIO — ResponsiveVoice TTS
+// ==============================
+var narrasiTeks = {
+  kb1: 'Selamat datang di Kegiatan Belajar 1. Kita akan mempelajari Konsep Segiempat. ' +
+       'Segiempat adalah bangun datar yang sangat sering kita jumpai dalam kehidupan sehari-hari. ' +
+       'Coba perhatikan benda-benda di sekitarmu: buku tulis, jendela, pintu, televisi, ubin lantai, dan layar komputer. ' +
+       'Semua benda tersebut memiliki bentuk segiempat. ' +
+       'Segiempat adalah bangun datar yang terbentuk oleh empat titik yang dihubungkan oleh empat garis lurus, ' +
+       'sehingga membentuk bangun tertutup, memiliki empat sisi dan empat sudut, ' +
+       'dengan jumlah sudut seluruhnya tiga ratus enam puluh derajat. ' +
+       'Perlu diketahui bahwa tidak semua segiempat memiliki bentuk dan ukuran yang sama. ' +
+       'Segiempat memiliki berbagai jenis dengan ciri dan sifat yang berbeda-beda. ' +
+       'Yuk klik kartu bangun datar yang tersedia dan temukan sifat-sifatnya!',
+
+  kb2: 'Selamat datang di Kegiatan Belajar 2. Kita akan mempelajari Jenis-Jenis Segiempat. ' +
+       'Segiempat terbagi menjadi enam jenis utama. ' +
+       'Pertama, Persegi. Persegi adalah segiempat yang memiliki empat sisi sama panjang dan empat sudut siku-siku. ' +
+       'Diagonalnya sama panjang dan saling berpotongan tegak lurus. Contohnya papan catur dan ubin lantai. ' +
+       'Kedua, Persegi Panjang. Memiliki dua pasang sisi berhadapan sama panjang dan sejajar, dengan empat sudut siku-siku. ' +
+       'Contohnya pintu, jendela, dan papan tulis. ' +
+       'Ketiga, Jajargenjang. Memiliki dua pasang sisi berhadapan sejajar dan sama panjang, ' +
+       'dengan sudut-sudut yang berhadapan sama besar. ' +
+       'Keempat, Trapesium. Memiliki tepat satu pasang sisi sejajar. ' +
+       'Jumlah sudut yang berdekatan pada sisi sejajar adalah seratus delapan puluh derajat. ' +
+       'Kelima, Belah Ketupat. Memiliki empat sisi sama panjang, sudut berhadapan sama besar, ' +
+       'dan diagonal saling berpotongan tegak lurus. ' +
+       'Keenam, Layang-layang. Memiliki dua pasang sisi berdekatan sama panjang, ' +
+       'dan diagonalnya saling berpotongan tegak lurus. ' +
+       'Klik setiap kartu bangun untuk melihat sifat-sifat lengkapnya!',
+
+  kb3: 'Selamat datang di Kegiatan Belajar 3. Kita akan mempelajari Sifat-Sifat Segiempat. ' +
+       'Meskipun semua bangun yang kita pelajari adalah segiempat, setiap bangun memiliki sifat yang unik. ' +
+       'Persegi memiliki semua sisi sama panjang, semua sudut siku-siku, diagonal sama panjang dan tegak lurus. ' +
+       'Persegi Panjang memiliki dua pasang sisi sama panjang dan semua sudut siku-siku, tetapi diagonalnya tidak tegak lurus. ' +
+       'Jajargenjang memiliki sisi berhadapan sejajar dan sudut berhadapan sama besar, tetapi sudutnya tidak siku-siku. ' +
+       'Belah Ketupat memiliki empat sisi sama panjang dan diagonal tegak lurus, tetapi sudutnya tidak harus siku-siku. ' +
+       'Layang-layang memiliki dua pasang sisi berdekatan sama panjang dan diagonal tegak lurus. ' +
+       'Trapesium hanya memiliki satu pasang sisi yang sejajar. ' +
+       'Ingat pernyataan penting ini: Semua persegi merupakan persegi panjang, ' +
+       'tetapi tidak semua persegi panjang merupakan persegi. ' +
+       'Perhatikan tabel sifat-sifat dan coba kerjakan contoh soalnya!',
+
+  kb4: 'Selamat datang di Kegiatan Belajar 4. Kita akan mempelajari Keliling dan Luas Segiempat. ' +
+       'Keliling adalah jumlah panjang seluruh sisi bangun datar. ' +
+       'Luas adalah ukuran daerah yang dilingkupi oleh bangun tersebut. ' +
+       'Rumus keliling Persegi adalah empat kali sisi. Rumus luasnya adalah sisi kuadrat. ' +
+       'Rumus keliling Persegi Panjang adalah dua kali panjang ditambah lebar. Rumus luasnya adalah panjang dikali lebar. ' +
+       'Rumus keliling Jajargenjang adalah dua kali alas ditambah sisi miring. Rumus luasnya adalah alas dikali tinggi. ' +
+       'Rumus luas Belah Ketupat dan Layang-layang adalah setengah dikali diagonal satu dikali diagonal dua. ' +
+       'Rumus luas Trapesium adalah setengah dikali jumlah sisi sejajar dikali tinggi. ' +
+       'Contoh soal: Bu Ani ingin memasang keramik tiga puluh kali tiga puluh sentimeter ' +
+       'di lantai kamar enam kali empat meter. ' +
+       'Luas lantai adalah dua ratus empat puluh ribu sentimeter persegi. ' +
+       'Luas satu keramik adalah sembilan ratus sentimeter persegi. ' +
+       'Jadi jumlah keramik yang dibutuhkan adalah dua ratus enam puluh tujuh keramik. ' +
+       'Gunakan kalkulator interaktif untuk mencoba menghitung keliling dan luas berbagai segiempat!'
+};
+
+var rvReady = false;
+var rvCurrentBtn = null;
+var rvPlaying = false;
+var rvTimer = null;
+var rvStartTime = 0;
+var rvDuration = 0;
+
+function estimateDuration(text){
+  return Math.round((text.split(' ').length / 120) * 60);
+}
+
+function loadRV(callback){
+  if(window.responsiveVoice){ rvReady=true; callback(); return; }
+  var s=document.createElement('script');
+  s.src='https://code.responsivevoice.org/responsivevoice.js?key=FREE';
+  s.onload=function(){ rvReady=true; setTimeout(callback,500); };
+  s.onerror=function(){ fallbackTTS(callback); };
+  document.head.appendChild(s);
+}
+
+function fallbackTTS(callback){
+  // Fallback ke Web Speech API jika ResponsiveVoice gagal load
+  if(window.speechSynthesis){ rvReady='wss'; }
+  if(callback) callback();
+}
+
+function toggleNarration(btn){
+  var kbId = (btn.closest('.page')||{id:'page-kb1'}).id.replace('page-','');
+  var teks = narrasiTeks[kbId] || narrasiTeks['kb1'];
+
+  // Jika tombol yang sama dan sedang memutar → stop
+  if(rvCurrentBtn===btn && rvPlaying){
+    stopAllNarration();
+    return;
+  }
+
+  // Stop narasi sebelumnya
+  stopAllNarration();
+
+  rvCurrentBtn = btn;
+  rvPlaying = true;
+  btn.innerHTML = '<i class="fa fa-pause"></i>';
+  rvDuration = estimateDuration(teks);
+  rvStartTime = Date.now();
+
+  function onEnd(){
+    rvPlaying=false;
+    rvCurrentBtn=null;
+    if(btn){ btn.innerHTML='<i class="fa fa-play"></i>'; }
+    clearInterval(rvTimer);
+    resetProgressBar(btn);
+  }
+
+  loadRV(function(){
+    if(rvReady===true && window.responsiveVoice){
+      // Coba suara Indonesia, fallback ke English
+      var voice = 'Indonesian Female';
+      responsiveVoice.speak(teks, voice, {
+        rate: 0.9,
+        pitch: 1,
+        volume: 1,
+        onstart: function(){ startProgressTimer(btn); },
+        onend: onEnd,
+        onerror: function(){
+          // Fallback suara inggris jika Indonesia tidak ada
+          responsiveVoice.speak(teks, 'UK English Female', {
+            rate: 0.85, pitch: 1, volume: 1,
+            onstart: function(){ startProgressTimer(btn); },
+            onend: onEnd,
+          });
+        }
+      });
+    } else if(window.speechSynthesis){
+      // Web Speech API fallback
+      window.speechSynthesis.cancel();
+      var utt = new SpeechSynthesisUtterance(teks);
+      utt.lang = 'id-ID';
+      utt.rate = 0.88;
+      utt.pitch = 1;
+      utt.volume = 1;
+      // Tunggu voices loaded
+      function doSpeak(){
+        var voices = window.speechSynthesis.getVoices();
+        var idV = voices.find(function(v){ return v.lang==='id-ID'||v.lang.startsWith('id'); });
+        if(!idV) idV = voices.find(function(v){ return v.lang.startsWith('en'); });
+        if(idV) utt.voice=idV;
+        utt.onend = onEnd;
+        utt.onerror = onEnd;
+        window.speechSynthesis.speak(utt);
+        startProgressTimer(btn);
+      }
+      if(window.speechSynthesis.getVoices().length){ doSpeak(); }
+      else{ window.speechSynthesis.onvoiceschanged = doSpeak; }
+    } else {
+      alert('Browser tidak mendukung fitur audio. Gunakan Google Chrome terbaru.');
+      onEnd();
+    }
+  });
+}
+
+function startProgressTimer(btn){
+  clearInterval(rvTimer);
+  rvTimer = setInterval(function(){
+    if(!btn) return;
+    var bar = btn.closest('.audio-controls');
+    if(!bar) return;
+    var fill = bar.querySelector('.audio-progress-fill');
+    var timeEl = bar.querySelector('.audio-time');
+    var elapsed = Math.min((Date.now()-rvStartTime)/1000, rvDuration);
+    var pct = rvDuration>0 ? Math.min((elapsed/rvDuration)*100,100) : 0;
+    if(fill) fill.style.width = pct+'%';
+    var fmt=function(s){ s=Math.round(s); return Math.floor(s/60)+':'+(s%60<10?'0':'')+s%60; };
+    if(timeEl) timeEl.textContent = fmt(elapsed)+' / '+fmt(rvDuration);
+  }, 300);
+}
+
+function resetProgressBar(btn){
+  if(!btn) return;
+  var bar = btn.closest('.audio-controls');
+  if(!bar) return;
+  var fill = bar.querySelector('.audio-progress-fill');
+  var timeEl = bar.querySelector('.audio-time');
+  if(fill) fill.style.width='0%';
+  if(timeEl) timeEl.textContent='0:00 / 0:00';
+}
+
+function stopAllNarration(){
+  if(window.responsiveVoice && rvReady===true) responsiveVoice.cancel();
+  if(window.speechSynthesis) window.speechSynthesis.cancel();
+  rvPlaying=false;
+  rvCurrentBtn=null;
+  clearInterval(rvTimer);
+  document.querySelectorAll('.audio-btn.play-pause').forEach(function(b){
+    b.innerHTML='<i class="fa fa-play"></i>';
+  });
+  document.querySelectorAll('.audio-progress-fill').forEach(function(f){ f.style.width='0%'; });
+  document.querySelectorAll('.audio-time').forEach(function(t){ t.textContent='0:00 / 0:00'; });
+}
+
+// Hentikan narasi saat pindah halaman
+var _origGoPage = goPage;
+goPage = function(id){ stopAllNarration(); _origGoPage(id); };
+
+// ==============================
+// VIDEO MODAL
+// ==============================
+function openVideoModal(url, title){
+  document.getElementById('videoModalFrame').src = url;
+  document.getElementById('videoModalTitle').innerHTML = '<i class="fab fa-youtube" style="color:#dc2626;margin-right:6px;"></i>' + title;
+  document.getElementById('videoModal').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeVideoModal(){
+  document.getElementById('videoModal').classList.remove('show');
+  document.getElementById('videoModalFrame').src = '';
+  document.body.style.overflow = '';
+}
+function closeVideoModalBg(e){
+  if(e.target === document.getElementById('videoModal')) closeVideoModal();
+}
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape') closeVideoModal();
+});
+
+// ==============================
+// CALCULATOR
+// ==============================
+var calcConfigs={
+  persegi:[{id:'s',lbl:'Sisi (s) cm'}],
+  pp:[{id:'p',lbl:'Panjang (p) cm'},{id:'l',lbl:'Lebar (l) cm'}],
+  jg:[{id:'a',lbl:'Alas (a) cm'},{id:'b',lbl:'Sisi miring (b) cm'},{id:'t',lbl:'Tinggi (t) cm'}],
+  bk:[{id:'s',lbl:'Sisi (s) cm'},{id:'d1',lbl:'Diagonal 1 cm'},{id:'d2',lbl:'Diagonal 2 cm'}],
+  ll:[{id:'a',lbl:'Sisi a cm'},{id:'b',lbl:'Sisi b cm'},{id:'d1',lbl:'Diagonal 1 cm'},{id:'d2',lbl:'Diagonal 2 cm'}],
+  tr:[{id:'a',lbl:'Sisi sejajar a cm'},{id:'b',lbl:'Sisi sejajar b cm'},{id:'c',lbl:'Sisi c cm'},{id:'d',lbl:'Sisi d cm'},{id:'t',lbl:'Tinggi (t) cm'}]
+};
+function renderCalcFields(){
+  var shape=document.getElementById('calc-shape').value;
+  var fields=calcConfigs[shape];
+  document.getElementById('calc-inputs').innerHTML=fields.map(function(f){
+    return '<div class="calc-field"><label class="calc-label">'+f.lbl+'</label><input type="number" min="0" step="0.1" id="cf_'+f.id+'" placeholder="0" style="width:130px;"></div>';
+  }).join('');
+  document.getElementById('calc-result').innerHTML='';
+}
+function doCalc(){
+  var shape=document.getElementById('calc-shape').value;
+  var fields=calcConfigs[shape];
+  var v={};
+  for(var i=0;i<fields.length;i++){
+    var el=document.getElementById('cf_'+fields[i].id);
+    var val=parseFloat(el?el.value:NaN);
+    if(isNaN(val)||val<=0){
+      document.getElementById('calc-result').innerHTML='<div class="box orange"><div class="box-title"><i class="fa fa-triangle-exclamation"></i> Perhatian</div>Masukkan semua nilai dengan benar (> 0)!</div>';
+      return;
+    }
+    v[fields[i].id]=val;
+  }
+  var K,L;
+  if(shape==='persegi'){K=4*v.s;L=v.s*v.s;}
+  else if(shape==='pp'){K=2*(v.p+v.l);L=v.p*v.l;}
+  else if(shape==='jg'){K=2*(v.a+v.b);L=v.a*v.t;}
+  else if(shape==='bk'){K=4*v.s;L=0.5*v.d1*v.d2;}
+  else if(shape==='ll'){K=2*(v.a+v.b);L=0.5*v.d1*v.d2;}
+  else if(shape==='tr'){K=v.a+v.b+v.c+v.d;L=0.5*(v.a+v.b)*v.t;}
+  document.getElementById('calc-result').innerHTML=
+    '<div class="box green"><div class="box-title"><i class="fa fa-calculator"></i> Hasil Perhitungan</div>'+
+    '<div style="display:flex;gap:24px;flex-wrap:wrap;margin-top:8px;">'+
+    '<div><div style="font-size:11px;color:var(--text-muted);font-weight:700;"><i class="fa fa-draw-polygon"></i> KELILING</div><div class="math-box">'+K.toFixed(2)+' cm</div></div>'+
+    '<div><div style="font-size:11px;color:var(--text-muted);font-weight:700;"><i class="fa fa-square-full"></i> LUAS</div><div class="math-box">'+L.toFixed(2)+' cm²</div></div>'+
+    '</div></div>';
+}
+
+// ==============================
+// QUIZ
+// ==============================
+var quizData=[
+  {q:"Bangun datar dengan 4 sisi sama panjang dan 4 sudut siku-siku adalah...",opts:["Jajargenjang","Persegi","Trapesium","Layang-layang"],ans:1},
+  {q:"Jumlah sudut dalam segiempat adalah...",opts:["180°","270°","360°","420°"],ans:2},
+  {q:"Segiempat yang memiliki tepat satu pasang sisi sejajar adalah...",opts:["Persegi Panjang","Jajargenjang","Trapesium","Belah Ketupat"],ans:2},
+  {q:"Rumus luas belah ketupat dengan diagonal d₁ dan d₂ adalah...",opts:["d₁ × d₂","½ × d₁ × d₂","2(d₁ + d₂)","d₁ + d₂"],ans:1},
+  {q:"Persegi dengan sisi 8 cm. Kelilingnya adalah...",opts:["16 cm","24 cm","32 cm","64 cm"],ans:2},
+  {q:"Segiempat yang diagonalnya saling berpotongan tegak lurus adalah...",opts:["Persegi panjang & trapesium","Persegi & jajargenjang","Persegi & belah ketupat","Jajargenjang & trapesium"],ans:2},
+  {q:"Luas persegi panjang 12 cm × 7 cm adalah...",opts:["38 cm²","84 cm²","19 cm²","76 cm²"],ans:1},
+  {q:"Trapesium sisi sejajar 10 cm & 6 cm, tinggi 5 cm. Luasnya...",opts:["40 cm²","30 cm²","80 cm²","15 cm²"],ans:0},
+  {q:"Sifat yang dimiliki persegi tetapi TIDAK dimiliki persegi panjang...",opts:["Sudut siku-siku","Semua sisi sama panjang","Diagonal sama panjang","Sisi berhadapan sejajar"],ans:1},
+  {q:"Layang-layang dengan diagonal 12 cm dan 8 cm. Luasnya...",opts:["96 cm²","48 cm²","20 cm²","40 cm²"],ans:1}
+];
+var userAns=[],submitted=false;
+function buildQuiz(){
+  userAns=new Array(quizData.length).fill(-1);submitted=false;
+  document.getElementById('quiz-container').innerHTML=quizData.map(function(q,qi){
+    return '<div class="quiz-question" id="qq'+qi+'">'+
+      '<div class="quiz-q"><strong>'+( qi+1)+'. </strong>'+q.q+'</div>'+
+      '<div class="quiz-options">'+
+      q.opts.map(function(opt,oi){
+        return '<div class="quiz-opt" data-qi="'+qi+'" data-oi="'+oi+'">'+
+          '<div class="opt-letter">'+String.fromCharCode(65+oi)+'</div>'+opt+'</div>';
+      }).join('')+
+      '</div></div>';
+  }).join('');
+  document.querySelectorAll('.quiz-opt').forEach(function(opt){
+    opt.addEventListener('click',function(){
+      if(submitted) return;
+      var qi=parseInt(this.getAttribute('data-qi'));
+      var oi=parseInt(this.getAttribute('data-oi'));
+      userAns[qi]=oi;
+      document.querySelectorAll('#qq'+qi+' .quiz-opt').forEach(function(o){o.classList.remove('selected');});
+      this.classList.add('selected');
+    });
+  });
+  document.getElementById('quiz-result').style.display='none';
+  document.getElementById('btn-submit').style.display='inline-flex';
+  document.getElementById('btn-reset').style.display='none';
+}
+function submitQuiz(){
+  if(userAns.some(function(a){return a===-1;})){alert('Jawab semua soal terlebih dahulu!');return;}
+  submitted=true;
+  var correct=0;
+  quizData.forEach(function(q,qi){
+    document.querySelectorAll('#qq'+qi+' .quiz-opt').forEach(function(o,oi){
+      if(oi===q.ans) o.classList.add('correct');
+      else if(oi===userAns[qi]&&oi!==q.ans) o.classList.add('wrong');
+    });
+    if(userAns[qi]===q.ans) correct++;
+  });
+  var score=Math.round(correct/quizData.length*100);
+  var msg=score>=90?'🏆 Luar Biasa! Sempurna!':score>=75?'🌟 Bagus sekali!':score>=60?'👍 Cukup, pelajari lagi!':'📚 Pelajari ulang materinya!';
+  document.getElementById('quiz-result').style.display='block';
+  document.getElementById('quiz-result').innerHTML=
+    '<div class="card score-area bounce-in">'+
+    '<div class="score-circle"><div><div class="score-num">'+score+'</div><div class="score-sub">Skor</div></div></div>'+
+    '<div style="font-size:20px;font-weight:800;margin-bottom:6px;">'+msg+'</div>'+
+    '<div style="font-size:13px;color:var(--text-muted);">Benar: '+correct+' dari '+quizData.length+' soal</div>'+
+    '</div>';
+  document.getElementById('btn-submit').style.display='none';
+  document.getElementById('btn-reset').style.display='inline-flex';
+  document.getElementById('quiz-result').scrollIntoView({behavior:'smooth'});
+}
+function resetQuiz(){submitted=false;buildQuiz();}
+
+// ==============================
+// PARTICLES (COVER)
+// ==============================
+function createParticles(){
+  var c=document.getElementById('particles');
+  if(!c) return;
+  for(var i=0;i<18;i++){
+    var d=document.createElement('div');
+    d.className='cover-particle';
+    var sz=Math.random()*60+20;
+    d.style.cssText='width:'+sz+'px;height:'+sz+'px;left:'+(Math.random()*100)+'%;animation-duration:'+(Math.random()*8+6)+'s;animation-delay:'+(Math.random()*6)+'s;';
+    c.appendChild(d);
+  }
+}
+
+// ==============================
+// SCROLL TOP
+// ==============================
+window.addEventListener('scroll',function(){
+  document.getElementById('scrollTop').classList.toggle('show',window.scrollY>300);
+});
+
+// ==============================
+// INIT
+// ==============================
+document.getElementById('btn-mulai').addEventListener('click',function(){
+  document.getElementById('cover').style.display='none';
+  document.getElementById('app').style.display='block';
+  buildBangunGrid('home-bangun-grid');
+  buildBangunGrid('kb1-bangun-grid');
+  buildShapeGridKB2();
+  buildQuiz();
+  renderCalcFields();
+  document.getElementById('calc-shape').addEventListener('change',renderCalcFields);
+  document.getElementById('btn-calc').addEventListener('click',doCalc);
+  document.getElementById('btn-submit').addEventListener('click',submitQuiz);
+  document.getElementById('btn-reset').addEventListener('click',resetQuiz);
+});
+createParticles();
+</script>
+</body>
+</html>
